@@ -1,0 +1,24 @@
+%aside.visible-md.visible-lg.affix.col-md-2.col-md-push-10.col-lg-push-9
+  %h3 See also
+  %ul
+    %li lorem
+    %li ipsum
+.row
+  .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-1.col-lg-6.col-lg-offset-2
+    %h1= @post.title
+.hidden-xs
+  %br/
+%section.row
+  .col-sm-12.text-center
+    - if admin?
+      %div.col-xs-12
+        = link_to 'EDIT', edit_post_path(@post)
+      %div.col-xs-12
+      - @post.tag_list.each do |tag|
+        %span.label.label-default= tag
+  .visible-xs-block
+    %br/
+%section.row
+  %article.col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-1.col-lg-6.col-lg-offset-2#post_text
+    != find_and_preserve render_post @post
+

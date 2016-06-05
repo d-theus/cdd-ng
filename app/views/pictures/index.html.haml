@@ -1,0 +1,45 @@
+.row
+  .col-xs-12.text-center
+    %h1 Picture Management
+%br/
+- if @new_picture
+  .row
+    %center.col-md-6.col-md-offset-3
+      .panel.panel-default
+        .panel-heading
+          %h3 Add picture to collection
+        .panel-body
+          = simple_form_for @new_picture, html: { class: 'form-inline' }, url: pictures_path do |f|
+            = f.input :image
+            = f.input :caption
+            = f.submit 'ADD', class: 'btn btn-primary'
+  %br/
+.row
+  .col-xs-12.col-md-8.col-md-offset-2
+    %ul.media-list
+      - @pictures.each do |pic|
+        %li.media
+          .pull-left.media-middle
+            %img.media-object{src: pic.image.thumb}
+          .media-body
+            %h4.media-heading
+              = pic.caption.blank? ? "No caption" : pic.caption
+            .row
+              .col-xs-12
+                %strong slug
+                %pre= pic.slug
+            .row
+              .col-xs-12
+                %button.btn.btn-default.btn-sm{ data: { toggle: 'collapse', target: "#picture_#{pic.id}_links"}} SHOW LINKS
+                .collapse{id: "picture_#{pic.id}_links"}
+                  %ul.list-unstyled
+                    %li
+                      %strong thumb:
+                      %pre= pic.image.thumb
+                    %li
+                      %strong small:
+                      %pre= pic.image.small
+                    %li
+                      %strong large:
+                      %pre= pic.image.large
+

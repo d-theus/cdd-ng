@@ -1,0 +1,42 @@
+.row
+  .col-xs-12.text-center
+    %h1 Recent posts
+- if admin?
+  .row
+    .col-xs-12.text-center
+      = link_to 'COMPOSE', new_post_path
+.row
+  .col-xs-12.col-md-8.col-md-offset-1.well
+    %ul.list-group
+      - @posts.each do |post|
+        %li.list-group-item
+          .row
+            .col-xs-12.col-sm-9.col-lg-10
+              .row
+                .col-xs-10
+                  %h3= post.title
+              .row
+                %p.col-xs-11
+                  - post.tag_list.each do |t|
+                    %span.label.label-default= t
+              .row
+                .col-xs-12
+                  %p!= find_and_preserve(render_post_text post.summary)
+              .row
+                .col-xs-11
+                  %a{href: post_path(post)} VIEW
+                  - if admin?
+                    %a{href: edit_post_path(post), title: 'edit'}
+                      EDIT
+            .hidden-xs.col-sm-3.col-lg-2
+              - if post.pictures.any?
+                %br/
+                %br/
+                = post_thumb(post) 
+  .col-md-3.text-center#tags
+    %h4 Tags
+    %ul.list-unstyled
+      - ActsAsTaggableOn::Tag.most_used(100).each do |tag|
+        %li
+          %span.label.label-default= tag
+

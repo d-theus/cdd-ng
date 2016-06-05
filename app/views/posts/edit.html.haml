@@ -1,0 +1,12 @@
+.row
+  .col-xs-10.text-center
+    %h1 Edit post &laquo;#{@post.title}&raquo;
+.row
+  .col-xs-10.col-xs-offset-1
+    = render partial: 'form'
+.row
+  .col-xs-10.col-xs-offset-1.text-center
+    = link_to 'DELETE THIS POST', post_path(@post), data: { method: :delete, confirm: 'Really delete this post?'}, class: 'btn btn-danger'
+
+= javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js'
+= stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/default.min.css'
