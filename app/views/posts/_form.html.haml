@@ -11,17 +11,22 @@
     .col-xs-12.text-center
       = button_tag 'PICTURES', type: :button, data: { toggle: 'modal', target: '#pictures_modal'}
   .row
-    .col-xs-6
-      = button_tag 'RENDER >>>', type: :button, name: 'render', class: 'btn btn-info'
+    .col-xs-5
       = f.input :text
       %div#post_text_editor
-    .col-xs-6
-      %h4 Preview:
+      %button.btn.btn-info.btn-raised.pull-right{type: :button, name: :render}
+        RENDER
+        %i.fa.fa-arrow-right
+    .col-xs-7#post_preview
+      %h4.text-muted Preview:
       %article#post_preview_text
-  = f.submit (action_name == 'new' ? 'CREATE' : 'UPDATE'), class: 'btn btn-primary'
+  .row
+    .col-xs-12.text-center
+      = f.submit (action_name == 'new' ? 'CREATE' : 'UPDATE'), class: 'btn btn-primary'
 
 = javascript_include_tag 'ace/ace'
 = javascript_include_tag 'ace/mode-markdown'
+= javascript_include_tag 'posts'
 .modal.fade#pictures_modal
   .modal-dialog
     .modal-content

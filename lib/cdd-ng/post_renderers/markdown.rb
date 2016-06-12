@@ -19,7 +19,7 @@ module PostRenderers
     def rouge_formatter(lexer)
       Rouge::Formatters::HTML.new(
         css_class: "highlight #{lexer.tag}",
-        inline_theme: 'github'
+        inline_theme: 'monokai'
       )
     end
   end

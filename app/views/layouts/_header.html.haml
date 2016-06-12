@@ -1,13 +1,13 @@
-%header.navbar.navbar-inverse
+%header.navbar.navbar-default
   .container-fluid
-    .navbar-reader
-      .navbar-brand
-        = link_to 'CAFFEINEDRIVENDEVEL', posts_url
+    .navbar-header
+      %button.navbar-toggle{ data: { toggle: 'collapse', target: '.navbar-collapse'} }
+        %i.icon-bar
+        %i.icon-bar
+        %i.icon-bar
+      = link_to 'CAFFEINEDRIVENDEVEL', posts_url, class: 'navbar-brand'
     .collapse.navbar-collapse#navbar_collapse
       %ul.nav.navbar-nav.navbar-right
-        %li
-          %a(href=posts_url) Blog
-        %li
-          %a(href="") Portfolio
-        %li
-          %a(href="") About
+        = nav_link 'Blog', posts_url
+        = nav_link 'Portfolio', ''
+        = nav_link 'About', ''

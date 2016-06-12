@@ -9,10 +9,16 @@
         .panel-heading
           %h3 Add picture to collection
         .panel-body
-          = simple_form_for @new_picture, html: { class: 'form-inline' }, url: pictures_path do |f|
-            = f.input :image
-            = f.input :caption
-            = f.submit 'ADD', class: 'btn btn-primary'
+          = simple_form_for @new_picture, html: { class: 'form-horizontal text-left' }, url: pictures_path do |f|
+            .row
+              .col-xs-8.col-xs-offset-2
+                = f.input :image, wrapper_class: 'form-group is-fileinput'
+            .row
+              .col-xs-8.col-xs-offset-2
+                = f.input :caption, wrapper_class: 'form-group label-floating'
+            .row
+              .col-xs-8.col-xs-offset-2
+                = f.submit 'ADD', class: 'btn btn-primary'
   %br/
 .row
   .col-xs-12.col-md-8.col-md-offset-2

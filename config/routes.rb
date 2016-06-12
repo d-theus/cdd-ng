@@ -6,4 +6,6 @@ Rails.application.routes.draw do
     end
     resources :pictures, except: [:show, :new, :edit], controller: :pictures
   end
+
+  root to: redirect('/blog/posts')
 end

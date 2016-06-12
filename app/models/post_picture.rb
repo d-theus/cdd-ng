@@ -10,6 +10,6 @@ class PostPicture < ActiveRecord::Base
   private
 
   def should_generate_new_friendly_id?
-    slug.blank? || caption_changed?
+    slug.blank?
   end
 end

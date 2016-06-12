@@ -10,9 +10,15 @@ module PostsHelper
 
   def post_thumb(post)
     capture_haml do
-      haml_tag :img,
-        class: 'img-responsive img-thumbnail',
-        src: post.pictures.first.image.thumb
+      if post.pictures.any?
+        haml_tag :img,
+          class: 'circle',
+          src: post.pictures.first.image.thumb
+      else
+        haml_tag :i, class: 'material-icons' do
+          haml_concat 'note'
+        end
+      end
     end
   end
 

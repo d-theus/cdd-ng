@@ -23,6 +23,11 @@
 
   %body
     = render partial: 'layouts/header'
+    .container-fluid#page-heading
+      = yield :page_heading
+    - if content_for?(:action)
+      #actions.text-center
+        = yield :action 
     .container-fluid#content
       .row
         = yield

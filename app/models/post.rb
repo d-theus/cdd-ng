@@ -6,7 +6,6 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
   validates :text, presence: true
-  validates :slug, uniqueness: true, presence: true
 
   before_save :update_pictures
   before_destroy :update_pictures
@@ -18,7 +17,7 @@ class Post < ActiveRecord::Base
   private
 
   def should_generate_new_friendly_id?
-    slug.blank? || title_changed?
+    slug.blank?
   end
 
   def update_pictures

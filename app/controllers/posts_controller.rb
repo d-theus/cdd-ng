@@ -11,17 +11,22 @@ class PostsController < ApplicationController
   end
 
   def show
+    if request.path != post_path(@post)
+      redirect_to post_path(@post), status: :moved_permanently
+    end
+    @see_also = Post.where.not(id: @post)
   end
 
   def index
     @posts = Post.order('created_at DESC')
+    @tags = ActsAsTaggableOn::Tag.most_used(100)
   end
 
   def create
-    @post.update_attributes(post_params)
+    @post.assign_attributes(post_params)
     if @post.save
       flash.now[:notice] = 'All went well. Post created.'
-      redirect_to post_path(@post)
+      redirect_to post_path(id: @post.slug)
     else
       flash.now[:alert] = 'Something went wrong'
       render :new, status: :unprocessable_entity
@@ -29,7 +34,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update_attributes(post_params)
+    @post.assign_attributes(post_params)
     if @post.save
       flash.now[:notice] = 'All went well. Post updated.'
       redirect_to post_path(@post)
