@@ -18,7 +18,10 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.order('created_at DESC')
+    @posts = PostListDecorator.new(
+      Post.order('created_at DESC').paginate(per_page: 3, page: params[:page]).includes(:pictures, :tags),
+      view_context
+    )
     @tags = ActsAsTaggableOn::Tag.most_used(100)
   end
 

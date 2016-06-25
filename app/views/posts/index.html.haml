@@ -1,10 +1,10 @@
 .row
   .col-xs-12.col-md-8.col-md-offset-2.well
-    %ul.list-group
+    %ul.list-group.posts
       - @posts.each_with_index do |post, i|
         %li.list-group-item
           .row-picture
-            = post_thumb(post)
+            != post.thumb
           .row-content
             .pull-right.btn-group-vertical
               %a.btn.btn-primary{href: post_path(post)} READ
@@ -12,31 +12,32 @@
                 %a.btn.btn-info{href: edit_post_path(post), title: 'edit'}
                   EDIT
             %h3.list-group-item-heading= post.title
+            .list-group-item-text
+              %span.text-nowrap.text-muted
+                %small= post.created_at.strftime('%-d %b, %Y')
+                != post.tags
             %p.list-group-item-text
-              - post.tag_list.each do |t|
-                %span.label.label-default= t
-            %p.list-group-item-text
-              %p!= find_and_preserve(render_post_text post.summary)
+              %p!= post.summary
         - unless i == @posts.size - 1
           %li.list-group-separator
-
-
+    = will_paginate @posts, page_links: false, previous_label: 'Newer', next_label: 'Older', class: 'pager'
 
   %aside.col-xs-12.col-md-2
     %br/
     %section.row#tags
       .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.text-center
         %h4.text-primary Tags
-        %ul.list-unstyled
+        %ul.list-unstyled.tags
           - @tags.each do |tag|
             %li
-              %span.label.label-default= tag
+              %a.label{href: '#'} tag
 
 - content_for :page_heading do
   %hgroup.row
     .col-xs-10.col-xs-offset-1.col-sm-8.col-sm-offset-2
       %h1 Recent posts
 
-- content_for :action do
-  %a.btn.btn-success.btn-fab{ href: new_post_path }
-    %i.material-icons note_add
+- if admin?
+  - content_for :action do
+    %a.btn.btn-success.btn-fab{ href: new_post_path }
+      %i.material-icons note_add

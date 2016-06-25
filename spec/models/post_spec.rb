@@ -43,7 +43,7 @@ RSpec.describe Post, type: :model do
 This is example text.
 <!--cut-->
 Image:
-[#{pic.caption}](#{pic.slug} "#{pic.caption}")
+![#{pic.caption}](#{pic.slug} "#{pic.caption}")
 some more text
 EOF
           )

@@ -21,7 +21,7 @@ class Post < ActiveRecord::Base
   end
 
   def update_pictures
-    slugs = text.scan(/\[.*\]\(((?!https?|\/)\S+).*\)/)
+    slugs = text.scan(/!\[.*\]\(((?!https?|\/)\S+).*\)/)
     ids = PostPicture.where(slug: slugs).pluck(:id)
     self.picture_ids = ids
   end
