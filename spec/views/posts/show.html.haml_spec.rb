@@ -5,11 +5,13 @@ RSpec.describe 'posts/show', type: :view do
   include Capybara::DSL
   let(:pst) { FactoryGirl.build_stubbed(:post, :with_pictures, tag_list: ['tag1', 'tag2']) }
   let(:see_also) { Array.new(3) { FactoryGirl.build_stubbed(:post) } }
+
   before do
     assign :post, pst
     assign :see_also, see_also
-    allow(view).to receive(:admin?).and_return(false)
   end
+
+  before { allow(view).to receive(:admin?).and_return(false) }
 
   it 'has content_for :page_heading block with h1 in it' do
     render

@@ -5,7 +5,7 @@ RSpec.describe "posts/index", type: :view do
   let(:posts) do
     PostListDecorator.new(
       Array.new(post_count) do |i|
-        FactoryGirl.build_stubbed(:post, i % 3 == 0 ? :with_picture : nil)
+        FactoryGirl.build_stubbed(:post, i % 3 == 0 ? :with_picture : nil, slug: 'post-i')
       end.paginate(per_page: per_page),
       ApplicationController.new.view_context
     )
@@ -18,6 +18,8 @@ RSpec.describe "posts/index", type: :view do
     assign :posts, posts
     assign :tags,  tags
   end
+
+  before { allow(view).to receive(:admin?).and_return(false) }
 
   it 'has content_for :page_heading' do
     render
