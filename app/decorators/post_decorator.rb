@@ -46,6 +46,10 @@ class PostDecorator
     out
   end
 
+  def to_s
+    @object.slug
+  end
+
   def method_missing(meth, *args, &blk)
     @object.send(meth, *args, &blk)
   end

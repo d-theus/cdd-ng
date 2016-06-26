@@ -1,4 +1,7 @@
 require 'rails_helper'
+require 'support/controller_helpers'
+
+include ControllerHelpers
 
 RSpec.describe PostsController, type: :controller do
   let(:pst) { FactoryGirl.build_stubbed(:post, slug: 'some-slug') }
@@ -10,7 +13,11 @@ RSpec.describe PostsController, type: :controller do
     allow_any_instance_of(Post).to receive(:save).and_return(true)
     allow(pst).to receive(:save).and_return(true)
     allow(pst).to receive(:destroy).and_return(true)
+
+    sign_in nil
   end
+
+  after { Warden.test_reset! }
 
   # GET
   describe 'GET #show' do
@@ -45,56 +52,99 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'GET #new' do
-    before { get :new }
-    it 'assigns @post' do
-      expect(assigns(:post)).not_to be_nil
+    context 'when authorized' do
+      before { sign_in }
+      it 'assigns @post' do
+        get :new
+        expect(assigns(:post)).not_to be_nil
+      end
+    end
+    it 'returns FORBIDDEN' do
+      get :new
+      expect(response).to be_forbidden
     end
   end
 
   describe 'GET #edit' do
-    before { get :edit, id: pst }
-    it 'assigns @post' do
-      expect(assigns(:post)).not_to be_nil
+    context 'when authorized' do
+      before { sign_in }
+      it 'assigns @post' do
+        get :edit, id: pst
+        expect(assigns(:post)).not_to be_nil
+      end
+    end
+    it 'returns FORBIDDEN' do
+      get :edit, id: pst
+      expect(response).to be_forbidden
     end
   end
 
   describe 'GET #preview' do
-    before { get :preview, post: { text: '# Some Markdown' } }
-    it 'renders text' do
-      expect(response.body).to match %r{<h1>Some Markdown</h1>}
+    context 'when authorized' do
+      before { sign_in }
+      it 'renders text' do
+        get :preview, post: { text: '# Some Markdown' }
+        expect(response.body).to match %r{<h1>Some Markdown</h1>}
+      end
+    end
+    it 'returns FORBIDDEN' do
+      get :preview, post: { text: '# Some Markdown' }
+      expect(response).to be_forbidden
     end
   end
 
   # POST
   describe 'POST #create' do
-    before { post :create, post: FactoryGirl.attributes_for(:post, slug: 'some-slug') }
-    it 'assigns @post' do
-      expect(assigns(:post)).not_to be_nil
+    context 'when authorized' do
+      before { sign_in }
+      before { post :create, post: FactoryGirl.attributes_for(:post, slug: 'some-slug') }
+      it 'assigns @post' do
+        expect(assigns(:post)).not_to be_nil
+      end
+      it 'redirects to post' do
+        expect(response).to redirect_to(post_path(pst))
+      end
     end
-    it 'redirects to post' do
-      expect(response).to redirect_to(post_path(pst))
+    it 'returns FORBIDDEN' do
+      post :create, post: FactoryGirl.attributes_for(:post, slug: 'some-slug')
+      expect(response).to be_forbidden
     end
   end
 
   # PUT
   describe 'PUT #update' do
-    before { post :update, id: pst, post: FactoryGirl.attributes_for(:post, text: 'new text', slug: 'some-slug') }
-    it 'assigns @post' do
-      expect(assigns(:post)).not_to be_nil
+    context 'when authorized' do
+      before { sign_in }
+      before { post :update, id: pst, post: FactoryGirl.attributes_for(:post, text: 'new text', slug: 'some-slug') }
+      it 'assigns @post' do
+        expect(assigns(:post)).not_to be_nil
+      end
+      it 'redirects to post' do
+        expect(response).to redirect_to(post_path(pst))
+      end
     end
-    it 'redirects to post' do
-      expect(response).to redirect_to(post_path(pst))
+    it 'returns FORBIDDEN' do
+      post :update, id: pst, post: FactoryGirl.attributes_for(:post, text: 'new text', slug: 'some-slug')
+      expect(response).to be_forbidden
     end
   end
 
   # DELETE
   describe 'DELETE #destroy' do
-    before { delete :destroy, id: pst }
-    it 'assigns @post' do
-      expect(assigns(:post)).not_to be_nil
+    context 'when authorized' do
+      before { sign_in }
+      before { delete :destroy, id: pst }
+      it 'assigns @post' do
+        expect(assigns(:post)).not_to be_nil
+      end
+      it 'redirects to index' do
+        expect(response).to redirect_to(posts_path)
+      end
     end
-    it 'redirects to index' do
-      expect(response).to redirect_to(posts_path)
+
+    it 'returns FORBIDDEN' do
+      delete :destroy, id: pst
+      expect(response).to be_forbidden
     end
   end
 end

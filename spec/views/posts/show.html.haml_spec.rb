@@ -8,6 +8,7 @@ RSpec.describe 'posts/show', type: :view do
   before do
     assign :post, pst
     assign :see_also, see_also
+    allow(view).to receive(:admin?).and_return(false)
   end
 
   it 'has content_for :page_heading block with h1 in it' do
@@ -41,11 +42,8 @@ RSpec.describe 'posts/show', type: :view do
       expect(view.content_for(:action)).to have_content(/edit/i)
     end
   end
-  context 'when anonimous' do
-    before { allow(view).to receive(:admin?).and_return(false)}
-    it 'has action button share' do
-      render
-      expect(view.content_for(:action)).to have_content(/share/i)
-    end
+  it 'has action button share' do
+    render
+    expect(view.content_for(:action)).to have_content(/share/i)
   end
 end

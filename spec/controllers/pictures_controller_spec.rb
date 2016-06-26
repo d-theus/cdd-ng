@@ -1,4 +1,7 @@
 require 'rails_helper'
+require 'support/controller_helpers'
+
+include ControllerHelpers
 
 RSpec.describe PicturesController, type: :controller do
   let(:pic) { FactoryGirl.build_stubbed(:post_picture) }
@@ -11,6 +14,8 @@ RSpec.describe PicturesController, type: :controller do
     allow_any_instance_of(PostPicture).to receive(:save).and_return(true)
     allow(pic).to receive(:save).and_return(true)
     allow(pic).to receive(:destroy).and_return(true)
+
+    sign_in
   end
 
   # GET
@@ -46,6 +51,26 @@ RSpec.describe PicturesController, type: :controller do
     
     it 'redirects to index' do
       expect(response).to redirect_to(pictures_path)
+    end
+  end
+
+  context 'anauthorized access' do
+    before { sign_in nil }
+    it 'returns 403 on GET #index' do
+      get :index
+      expect(response).to be_forbidden
+    end
+    it 'returns 403 on POST #create' do
+      post :create, post_picture: FactoryGirl.attributes_for(:post_picture)
+      expect(response).to be_forbidden
+    end
+    it 'returns 403 on PUT #update' do
+      post :create, id: pic.id, post_picture: FactoryGirl.attributes_for(:post_picture)
+      expect(response).to be_forbidden
+    end
+    it 'returns 403 on DELETE #destroy' do
+      delete :destroy, id: pic.id
+      expect(response).to be_forbidden
     end
   end
 end

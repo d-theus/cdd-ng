@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   scope :blog do
     get '/', to: redirect('/blog/posts/recent')
     resources :posts do

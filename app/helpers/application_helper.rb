@@ -1,6 +1,6 @@
 module ApplicationHelper
   def admin?
-    true
+    current_admin
   end
 
   def nav_link(title, href)
