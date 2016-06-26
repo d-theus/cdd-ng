@@ -29,7 +29,9 @@ no sea takimata sanctus est Lorem ipsum dolor sit amet.
         post.text << <<-EOF
 ![#{pic.caption}](#{pic.slug} "#{pic.caption}")
         EOF
+        post.save
       end
+
       after(:stub) do |post|
         pic = FactoryGirl.build_stubbed(:post_picture, slug: 'slug')
         post.text << <<-EOF
@@ -47,7 +49,9 @@ no sea takimata sanctus est Lorem ipsum dolor sit amet.
 ![#{pic.caption}](#{pic.slug} "#{pic.caption}")
           EOF
         end
+        post.save
       end
+
       after(:stub) do |post|
         post.pictures = Array.new(3) do |i|
           pic = FactoryGirl.build_stubbed(:post_picture, slug: "slug-#{i}")

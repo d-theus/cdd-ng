@@ -56,6 +56,7 @@ EOF
       let(:post) { FactoryGirl.create(:post, :with_pictures) }
       before { post.reload }
       it 'removes pictures association cascade' do
+        expect(post.pictures.count).to be > 0
         expect do
           post.destroy
         end.to change { PostPicture.joins('JOIN "posts_post_pictures" ON post_pictures.id = posts_post_pictures.post_picture_id').count }
