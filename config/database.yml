@@ -21,4 +21,4 @@ test:
 
 production:
   <<: *default
-  host: postgres
+  host: db
