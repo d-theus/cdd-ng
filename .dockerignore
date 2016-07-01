@@ -1,0 +1,7 @@
+Dockerfile
+docker-compose.yml
+public/uploads/*
+public/assets/*
+log/*
+tmp/*
+

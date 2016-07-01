@@ -1,0 +1,54 @@
+version: '2'
+volumes:
+  dbdata:
+    external:
+      name: 'cddevel-dbdata'
+  uploads:
+    external:
+      name: 'cddevel-uploads'
+
+services:
+  db:
+    image: 'dtheus/postgres'
+    env_file: .rbenv-vars
+    volumes:
+      - 'dbdata:/var/lib/pgsql'
+
+  smtp:
+    image: 'dtheus/postfix-dkim'
+    ports:
+      - '25:25'
+    env_file: .rbenv-vars
+    volumes: 
+      - '/etc/opendkim/keys/cddevel.com:/etc/opendkim/keys/cddevel.com'
+
+  app1: &app
+    build: .
+    depends_on:
+      - db
+      - smtp
+    env_file: .rbenv-vars
+    volumes:
+      - '/home/web/app/public'
+      - 'uploads:/home/web/app/public/uploads'
+
+  app2:
+    <<: *app
+
+  app3:
+    <<: *app
+
+  proxy:
+    image: 'dtheus/nginx'
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - '/etc/nginx/nginx.conf:/etc/nginx/nginx.conf'
+    volumes_from:
+      - app1:ro
+    depends_on:
+      - app1
+      - app2
+      - app3
+
