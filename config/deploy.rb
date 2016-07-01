@@ -38,6 +38,9 @@ set :pty, true
 
 set :keep_releases, 5
 
+set :skip_compose_down, ENV['SKIP_COMPOSE_DOWN']
+set :make_persistence_containers, ENV['MAKE_PERSISTENCE_CONTAINERS']
+
 namespace :docker do
   namespace :compose do
     task :up do
@@ -56,6 +59,13 @@ namespace :docker do
       end
     end
   end
+
+  task :persistence do
+    on roles :app do
+      execute 'docker', 'volume', 'create', '--name cddevel-uploads'
+      execute 'docker', 'volume', 'create', '--name cddevel-dbdata'
+    end
+  end
 end
 
 namespace :deploy do
@@ -65,7 +75,8 @@ namespace :deploy do
     end
   end
 
-  after :updated,   'docker:compose:down'
+  after :updated,   'docker:compose:down' unless fetch(:skip_compose_down, false)
   after :published, :upload_secret
+  after :published, 'docker:persistence' if fetch(:make_persistence_containers, false)
   after :published, 'docker:compose:up'
 end

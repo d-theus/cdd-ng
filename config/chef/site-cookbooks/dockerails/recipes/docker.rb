@@ -29,8 +29,9 @@ service 'docker' do
   action [:enable, :start]
 end
 
-package 'python-pip' do
+package ['python-pip', 'python-devel'] do
   action :upgrade
 end
 
-execute 'pip install docker-compose'
+execute 'pip install --upgrade pip'
+execute 'pip install --upgrade docker-compose'

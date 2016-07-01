@@ -7,3 +7,6 @@ execute "yum -y update"
 package 'epel-release' do
   action :upgrade
 end
+package 'git' do
+  action :upgrade
+end
