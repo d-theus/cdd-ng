@@ -10,3 +10,6 @@ end
 package 'git' do
   action :upgrade
 end
+package 'postfix' do
+  action :remove
+end
