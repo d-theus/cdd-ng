@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: utf8
   template: template0
-  database: cdd-ng
+  database: <%= ENV["DB_NAME"] %>
   pool: 5
   username: web
   password: <%= ENV["DB_PASS"] %>
