@@ -33,6 +33,9 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-rbenv'
   gem 'capistrano-rails'
+  gem 'chef'
+  gem 'knife-solo'
+  gem 'knife-solo_data_bag'
 end
 
 group :development, :test do

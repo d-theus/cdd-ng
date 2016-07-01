@@ -6,23 +6,21 @@
 
 # Ignore bundler config.
 /.bundle
-
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
-
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
 *.swp
 tags
 .tags
-
 /public/assets
 /public/uploads
 /public/sitemap.xml*
-
-*.swp
-tags
 .rbenv-vars
-/documents/
+/config/chef/clients
+/config/chef/documents
+/config/chef/cookbooks
+/config/chef/nodes/*
+.key

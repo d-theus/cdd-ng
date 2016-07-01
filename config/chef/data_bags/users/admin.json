@@ -1,0 +1,27 @@
+{
+  "id": "admin",
+  "login": {
+    "encrypted_data": "zlfU4GHchKt0LO+AAVjc1HHemKDu1egfvZTeaOCA094=\n",
+    "iv": "rlCXGmWSfa5q1DjPaFs7DQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "password": {
+    "encrypted_data": "z3E+qwTV3XHjK14ajT0/gZDXnteY4EIlX84PWfYN/ccG1ezgLqfEvXYnh5ef\nXVVKvP3VUYXllDv0XhTEVN1agw==\n",
+    "iv": "QD6Navz4jcNYhEmqSGo71w==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "manage_home": {
+    "encrypted_data": "wl1T+0MFQnxoZ3W6xy6izx93LLDKSavMDJT6JZ7EAqE=\n",
+    "iv": "w4HaW8dwSahGtY+tpn94WA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "ssh_authorized_keys": {
+    "encrypted_data": "QxKTqpn/1W9JH7TumR+AA7cSKapENjqtaFUwwXLy9FE=\n",
+    "iv": "Bk1KSPF1zG3HFlNJfJ8mpg==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

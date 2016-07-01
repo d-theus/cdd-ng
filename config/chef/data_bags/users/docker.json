@@ -1,0 +1,27 @@
+{
+  "id": "docker",
+  "login": {
+    "encrypted_data": "E8AurRXRa+b6VTSxtk86a0SU6lCS4Szv7BftrTNw7o8=\n",
+    "iv": "69JsoHvFRL9gVX+T/5jQNw==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "password": {
+    "encrypted_data": "k1w7/ayFbcqPC8+yQe4dAbneyQoubAEPWBhDjpxB3xHxz3t6rULEiIVJ+Vdo\n8u8nLBux7iv8CmMEBJ/6Rwt7Lg==\n",
+    "iv": "N6m1EbIt78ASaMfWqaCfFA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "manage_home": {
+    "encrypted_data": "VwfSi7pGI9tU5x/tXa5pvKkBmCCDIOQ9BSbnpVDDIQU=\n",
+    "iv": "L87lyA4E0IE0YkWfuYMkHg==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "ssh_authorized_keys": {
+    "encrypted_data": "7fPPn17qTVOmAS2u0naEDJDhrhpSCIeMhUPuO4UTy2Q=\n",
+    "iv": "mD3asqr9+4A6AO6EY11zog==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}
