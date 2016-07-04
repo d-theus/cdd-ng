@@ -29,52 +29,60 @@
 // material bootstrap
 @navbar-height: 60px;
 
-@material-bg-height-xs: 20vh;
-@material-bg-height-md: 3 * @navbar-height;
+//@material-bg-height-xs: 30vh;
+//@material-bg-height-md: 3 * @navbar-height;
 @material-bg-color:  darken(@gray, 10%);
+@material-overlap:   18px;
 
-#page-heading{
-  width: 100%;
-  top: 0;
+header.navbar{
   position: absolute;
-  color: white;
-  background: @material-bg-color;
-  z-index: -1;
-  @media only screen and (max-width: @screen-md){
-    height: @material-bg-height-xs;
-    padding-top: @navbar-height;
-  }
-  @media only screen and (min-width: @screen-md){
-    height: @material-bg-height-md;
-    padding-top: @navbar-height;
-  }
+  width: 100vw;
 }
 
 #content{
   @media only screen and (max-width: @screen-md){
-    margin-top: calc(20vh - 1em);
+    margin-top: - @navbar-height;
   }
   @media only screen and (min-width: @screen-md){
-    margin-top: 1.5 * @navbar-height;
+    margin-top: - @navbar-height;
   }
+  top: -@navbar-height;
+  padding: 0;
+}
+
+#page-heading{
+  width: 100%;
+  color: white;
+  background: @material-bg-color;
+  margin: 0;
+  z-index: -1;
+  padding-bottom: @material-overlap;
+  padding-top: @navbar-height;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #actions{
   .make-xs-column(4);
   .make-xs-column-offset(8);
-  .make-md-column(2);
+  .make-md-column(3);
   .make-md-column-offset(10);
+  .make-lg-column(3);
+  .make-md-column-offset(9);
   position: absolute;
   @media only screen and (max-width: @screen-md){
-    padding-left: 1.25 * @grid-gutter-width;
-    top: @material-bg-height-xs;
+    margin-top: 0;
+    top: calc(@navbar-height + 5px);
   }
   @media only screen and (min-width: @screen-md){
-    padding-left: 1.25 * @grid-gutter-width;
-    top: @material-bg-height-md;
+    margin-top: @material-overlap;
+    transform: translateY(-50%) translateX(@grid-gutter-width/2);
   }
-  transform: translateY(-50%);
   z-index: 10;
+}
+
+.jumbo-card{
+  margin-top: -@material-overlap;
 }
 
 aside{

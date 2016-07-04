@@ -1,5 +1,5 @@
 .row
-  .col-xs-12.col-md-8.col-md-offset-2.well
+  .col-xs-12.col-md-8.col-md-offset-1.well.jumbo-card
     %ul.list-group.posts
       - @posts.each_with_index do |post, i|
         %li.list-group-item
@@ -22,7 +22,7 @@
           %li.list-group-separator
     = will_paginate @posts, page_links: false, previous_label: 'Newer', next_label: 'Older', class: 'pager'
 
-  %aside.col-xs-12.col-md-2
+  %aside.col-xs-12.col-md-3
     %br/
     %section.row#tags
       .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.text-center
