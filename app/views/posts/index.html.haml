@@ -28,9 +28,9 @@
       .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.text-center
         %h4.text-primary Tags
         %ul.list-unstyled.tags
-          - @tags.each do |tag|
+          - @tags.each do |tg|
             %li
-              %a.label{href: '#'} tag
+              %a.label{href: '#'}= tg
 
 - content_for :page_heading do
   %hgroup.row

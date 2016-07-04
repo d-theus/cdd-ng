@@ -22,7 +22,7 @@ class PostsController < ApplicationController
       Post.order('created_at DESC').paginate(per_page: 10, page: params[:page]).includes(:pictures, :tags),
       view_context
     )
-    @tags = ActsAsTaggableOn::Tag.most_used(100)
+    @tags = ActsAsTaggableOn::Tag.most_used(50)
   end
 
   def create

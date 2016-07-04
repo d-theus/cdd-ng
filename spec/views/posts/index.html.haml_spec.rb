@@ -10,9 +10,10 @@ RSpec.describe "posts/index", type: :view do
       ApplicationController.new.view_context
     )
   end
-  let(:tags) { Array.new(10) { FactoryGirl.build_stubbed(:tag) } }
+  let(:tags) { Array.new(tag_count) { FactoryGirl.build_stubbed(:tag) } }
   let(:per_page) { 10 }
   let(:post_count) { 10 }
+  let(:tag_count) { 10 }
 
   before do
     assign :posts, posts
@@ -81,6 +82,15 @@ RSpec.describe "posts/index", type: :view do
       it 'has no EDIT links' do
         render
         expect(response).not_to have_content('EDIT')
+      end
+    end
+  end
+
+  describe 'tags' do
+    it 'has all assigned tags' do
+      render
+      tags.each do |tg|
+        expect(response).to have_content(tg)
       end
     end
   end

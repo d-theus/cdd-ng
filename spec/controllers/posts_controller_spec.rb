@@ -47,7 +47,7 @@ RSpec.describe PostsController, type: :controller do
       expect(assigns(:posts)).not_to be_nil
     end
     it 'assigns @tags' do
-      expect(assigns(:tags)).not_to be_nil
+      expect(assigns(:tags)).to eq ActsAsTaggableOn::Tag.most_used(50)
     end
   end
 
