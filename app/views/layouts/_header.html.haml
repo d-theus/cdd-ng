@@ -8,8 +8,8 @@
       = link_to 'CAFFEINEDRIVENDEVEL', posts_url, class: 'navbar-brand'
     .collapse.navbar-collapse#navbar_collapse
       %ul.nav.navbar-nav.navbar-right
-        = nav_link 'Blog', posts_url
-        = nav_link 'Portfolio', ''
+        = nav_link 'Blog', recent_posts_url
+        = nav_link 'Portfolio', portfolio_path
         = nav_link 'About', ''
         - if admin?
           %li
