@@ -1,0 +1,19 @@
+.well.work
+  .work-img
+    %img{src: work.image.small }
+  .work-text.col-xs-12
+    .row
+      .col-xs-12.col-md-8
+        %h3
+          %span= work.title
+          %span
+            - if admin?
+              %a.text-info{href: edit_work_path(work)}
+                %i.material-icons edit
+      .col-xs-12.col-md-4.text-center
+        .work-links.btn-group-sm
+          = work.website_link
+          = work.github_link
+    .row
+      .col-xs-12
+        %p= simple_format work.description

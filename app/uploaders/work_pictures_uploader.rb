@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class PostPictureUploader < CarrierWave::Uploader::Base
+class WorkPicturesUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :file
@@ -14,10 +14,10 @@ class PostPictureUploader < CarrierWave::Uploader::Base
   end
 
   version :small do
-    process resize_to_fill: [780,640]
+    process resize_to_fill: [980,640]
   end
 
   version :large do
-    process resize_to_fill: [1280, 1280]
+    process resize_to_fit: [1440, 1024]
   end
 end

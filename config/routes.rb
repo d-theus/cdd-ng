@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resource  :portfolio, only: [:show], controller: :portfolio
+  resources :works, only: [:new, :edit, :update, :create, :destroy], controller: :portfolio
+
   devise_for :admins
   scope :blog do
     get '/', to: redirect('/blog/posts/recent')

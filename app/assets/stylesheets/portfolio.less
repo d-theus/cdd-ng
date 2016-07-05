@@ -1,0 +1,39 @@
+.works{
+  margin-top: -@material-overlap;
+}
+
+.work{
+  padding: 0 !important;
+  border-radius: @border-radius-base !important;
+  overflow: hidden;
+  height: 384px;
+  .work-img{
+    position: relative;
+    overflow: hidden;
+    @media only screen and (min-width: 698px) and (max-width: 767px){
+      // Img can become too narrow here, so stretch
+      height: 120%;
+    }
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    img{
+      height: 100%;
+    }
+  }
+  .work-text{
+    bottom: 0;
+    color: white;
+    background: rgba(0,0,0,0.4);
+    margin: 0;
+    @media only screen and (min-width: 698px) and (max-width: 767px){
+      // When image is stretched, pull this text up
+      bottom: 20%;
+    }
+    transform: translateY(-100%);
+    text-shadow: 0 0 4px rgba(0,0,0,0.6);
+  }
+  .work-links{
+    padding-top: 10px;
+  }
+}
