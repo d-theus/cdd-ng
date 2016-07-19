@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contacts, except: [:edit, :show]
   resource  :portfolio, only: [:show], controller: :portfolio
   resources :works, only: [:new, :edit, :update, :create, :destroy], controller: :portfolio
 

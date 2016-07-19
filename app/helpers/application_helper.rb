@@ -13,4 +13,9 @@ module ApplicationHelper
       end
     end
   end
+
+  # FIXME
+  def about_path
+    ''
+  end
 end

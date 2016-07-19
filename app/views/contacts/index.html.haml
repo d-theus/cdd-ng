@@ -1,0 +1,29 @@
+- content_for :page_heading do
+  .row.text-center
+    %h1 Contacts
+
+.row
+  .col-xs-12.col-sm-8.col-sm-offset-2
+    .well.jumbo-card
+      %ul.list-group
+        - @contacts.each_with_index do |contact, i|
+          %li.list-group-item
+            .row-content
+              .pull-right
+                .btn-group-sm
+                  = link_to contact_path(contact), name: 'mark_as_read', class: "btn btn-primary btn-fab #{'disabled' unless contact.unread}", data: { method: :put, remote: true, params: { contact: { unread: false } } } do
+                    %i.material-icons done
+                  = link_to contact_path(contact), name: 'delete', class: 'btn btn-danger btn-fab',  data: { method: :delete, confirm: 'Are you sure?', remote: true } do
+                    %i.material-icons delete
+              %h4.list-group-item-heading
+                - if contact.unread
+                  %small.label.label-info new
+                %span= contact.name
+              .list-group-item-text
+                %p= simple_format contact.content
+                <strong>Reply to:</strong> #{contact.reply}
+          - unless i == @contacts.size - 1
+            %li.list-group-separator
+
+= javascript_include_tag 'contacts', async: true
+
