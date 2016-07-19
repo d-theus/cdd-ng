@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     resources :pictures, except: [:show, :new, :edit], controller: :pictures
   end
 
+  get '/about', to: 'about#show', as: 'about'
   root to: redirect('/blog/posts/recent')
 end

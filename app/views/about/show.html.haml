@@ -1,0 +1,52 @@
+- content_for :page_heading do
+  .row.text-center
+    %h1 About
+
+- content_for :action do
+  %a.btn.btn-info.btn-fab{href: new_contact_path, title: 'Contact Me'}
+    %i.material-icons person
+
+.row
+  .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+    .well.jumbo-card
+      %section
+        %h2 Me
+        %p Hello. My name is Andrew. I am web developer/software engineer.
+      %section
+        %h2 Contacts
+        %ul.list-unstyled.list-inline
+          %li
+            = link_to 'https://www.linkedin.com/in/andrew-dorofeyev-807586b4' do
+              = image_tag('icons/linkedin.svg', width: '32px')
+          %li
+            = link_to 'https://github.com/d-theus' do
+              = image_tag('icons/github.svg', width: '32px')
+          %li
+            = link_to 'https://www.facebook.com/profile.php?id=100009998048390' do
+              = image_tag('icons/facebook.svg', width: '32px')
+
+      %section
+        %h2 Skills
+        %p This place is also part of my portfolio, so here are some of my skills:
+        %ul
+          %li Programming languages: Ruby, C, C++, Haskell
+          %li
+            Using &amp; administrating of GNU/Linux systems (RHEL, CentOS, Debian). This includes
+            writing services, configuring network, deploing web servers, firewalls,
+            security audit and configuration.
+          %li Chef configuration management solution, also familiar with Puppet
+          %li Fluentd logging solution
+          %li Nginx web server
+          %li Familiar with AngularJS (v1.x)
+          %li VPS or Dedicated server administation. I use DigitalOcean, familiar with Heroku
+          %li
+            Ruby is my language of choice, so these are some Ruby-related skills:
+            %ul
+              %li Ruby on Rails framework
+              %li RSpec &amp; Capybara
+              %li Devise
+              %li Creating gems
+              %li Writing native extensions
+        
+      %section.text-center
+        = link_to 'GET IN TOUCH', new_contact_path, class: 'btn btn-primary btn-raised'
