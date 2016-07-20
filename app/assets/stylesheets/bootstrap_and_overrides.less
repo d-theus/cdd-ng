@@ -92,5 +92,32 @@ aside{
   }
 }
 
+.progress{
+  margin-top: 10px;
+}
+
+.xs-ladder{
+  @media only screen and (max-width: @screen-sm){
+    *:nth-child(1){
+      margin-top: 11px;
+    }
+    *:nth-child(2){
+      margin-top: 2*11px;
+    }
+    *:nth-child(3){
+      margin-top: 3*11px;
+    }
+    *:nth-child(4){
+      margin-top: 4*11px;
+    }
+    *:nth-child(5){
+      margin-top: 5*11px;
+    }
+    *:nth-child(6){
+      margin-top: 6*11px;
+    }
+  }
+}
+
 @code-bg: @material-bg-color;
 @pre-bg:  @material-bg-color;
