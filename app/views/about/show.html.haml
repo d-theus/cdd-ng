@@ -10,43 +10,210 @@
   .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
     .well.jumbo-card
       %section
+        %h2 This website
+        %p
+          is serving one main purpose: it is part of my portfolio, and is intended to be the most descriptive one,
+          regarding me as backend engineer.
+      %section
         %h2 Me
-        %p Hello. My name is Andrew. I am web developer/software engineer.
+        %p Hello. My name is Andrew. I am web developer/software engineer specializing in Ruby backend development.
+        %p <strong>Current job:</strong> software engineer at JSC &laquo;Vega&raquo;.
+        %p <strong>Current location:</strong> Moscow, Russian Federation.
+        %p <strong>Education:</strong> Moscow Technological Univesity (MIREA), Bachelor's degree, IT.
+        %p <strong>Status:</strong> open for job offers.
       %section
         %h2 Contacts
         %ul.list-unstyled.list-inline
           %li
-            = link_to 'https://www.linkedin.com/in/andrew-dorofeyev-807586b4' do
-              = image_tag('icons/linkedin.svg', width: '32px')
+            = link_to 'https://www.linkedin.com/in/andrew-dorofeyev-807586b4', target: '_blank', rel: 'nofollow noindex noopener' do
+              = image_tag('icons/linkedin.svg', width: '38px')
           %li
-            = link_to 'https://github.com/d-theus' do
-              = image_tag('icons/github.svg', width: '32px')
+            = link_to 'https://github.com/d-theus', target: '_blank', rel: 'nofollow noindex noopener' do
+              = image_tag('icons/github.svg', width: '38px')
           %li
-            = link_to 'https://www.facebook.com/profile.php?id=100009998048390' do
-              = image_tag('icons/facebook.svg', width: '32px')
+            = link_to 'https://www.facebook.com/profile.php?id=100009998048390', target: '_blank', rel: 'nofollow noindex noopener' do
+              = image_tag('icons/facebook.svg', width: '38px')
+          %li
+            = link_to 'mailto:slma0x02@gmail.com', class: 'btn btn-primary btn-fab btn-fab-mini' do
+              %i.material-icons email
 
       %section
         %h2 Skills
-        %p This place is also part of my portfolio, so here are some of my skills:
-        %ul
-          %li Programming languages: Ruby, C, C++, Haskell
-          %li
-            Using &amp; administrating of GNU/Linux systems (RHEL, CentOS, Debian). This includes
-            writing services, configuring network, deploing web servers, firewalls,
-            security audit and configuration.
-          %li Chef configuration management solution, also familiar with Puppet
-          %li Fluentd logging solution
-          %li Nginx web server
-          %li Familiar with AngularJS (v1.x)
-          %li VPS or Dedicated server administation. I use DigitalOcean, familiar with Heroku
-          %li
-            Ruby is my language of choice, so these are some Ruby-related skills:
-            %ul
-              %li Ruby on Rails framework
-              %li RSpec &amp; Capybara
-              %li Devise
-              %li Creating gems
-              %li Writing native extensions
-        
+        %h3 Scales
+        %p.text-muted
+          I define the following scales this way:
+          .row
+            .col-xs-8.col-xs-offset-1.col-sm-offset-2.xs-ladder
+              .col-xs-1.col-xs-pull-1 nothing
+              .col-xs-1 concepts
+              .col-xs-1.col-xs-push-1 basic&nbsp;stuff
+              .col-xs-2.col-xs-push-2 experienced
+              .col-xs-2.col-xs-push-3 advanced
+              .col-xs-2.col-xs-push-4 expert
+          .row
+            .col-xs-10.col-xs-offset-1
+              .progress
+                .progress-bar.progress-bar-default(style="width: 20%")
+                .progress-bar.progress-bar-warning(style="width: 20%")
+                .progress-bar.progress-bar-info(style="width: 20%")
+                .progress-bar.progress-bar-success(style="width: 20%")
+                .progress-bar.progress-bar-primary(style="width: 20%")
+        .row
+          .col-xs-12
+            %h3 Programming languages
+            %p.row
+              .col-xs-2.text-right
+                Ruby
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                Javascript/Coffeescript
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 50%")
+            %p.row
+              .col-xs-2.text-right
+                C/C++
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 50%")
+            %p.row
+              .col-xs-2.text-right
+                Haskell
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 30%")
+        .row
+          .col-xs-12
+            %h3 Frameworks &amp; Libraries
+            %p.row
+              .col-xs-2.text-right
+                Ruby on Rails
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 65%")
+            %p.row
+              .col-xs-2.text-right
+                RSpec
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                YARD
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                AngularJS
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 40%")
+
+        .row
+          .col-xs-12
+            %h3 Databases
+            %p.row
+              .col-xs-2.text-right
+                PostgreSQL
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 50%")
+            %p.row
+              .col-xs-2.text-right
+                MySQL
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 30%")
+            %p.row
+              .col-xs-2.text-right
+                Redis
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 30%")
+
+        .row
+          .col-xs-12
+            %h3 Configuration management / Integration / Version Control
+            %p.row
+              .col-xs-2.text-right
+                Chef
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 40%")
+            %p.row
+              .col-xs-2.text-right
+                Capistrano
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                Docker/Compose
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+        .row
+          .col-xs-12
+            %h3 Administation (Linux: RHEL, Centos, Arch, Alt, Astra)
+            %p.row
+              .col-xs-2.text-right
+                Initialization configuration (e.g. systemd, initd)
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 80%")
+            %p.row
+              .col-xs-2.text-right
+                Installing, deployment, initial configuration
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 90%")
+            %p.row
+              .col-xs-2.text-right
+                Security
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                Scripting, utilities
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                Nginx
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 60%")
+            %p.row
+              .col-xs-2.text-right
+                Fluentd
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 60%")
+
+        %section
+          %h2 Experience and achievments
+
+          %p
+            %h3
+              = link_to 'vncrec', 'https://github.com/d-theus/vncrec-ruby', target: '_blank', rel: 'nofollow noindex noopener'
+            Gem created for recording VNC sessions using plain raw format or ffmpeg encoding.
+            Native VNC stream decoding procedures. Currently this solution works for registration
+            of video data from workstations on several military objects.
+
+          %p
+            %h3
+              = link_to 'avrsh', 'https://github.com/d-theus/avrsh', target: '_blank', rel: 'nofollow noindex noopener'
+            Small and simple shell written on C using recursive descend.
+
+          %p
+            %h3
+              = link_to 'rspec-launchbox', 'https://github.com/d-theus/rspec-launchbox', target: '_blank', rel: 'nofollow noindex noopener'
+            An attempt to simplify executables testing with rspec.
       %section.text-center
         = link_to 'GET IN TOUCH', new_contact_path, class: 'btn btn-primary btn-raised'
