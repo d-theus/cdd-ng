@@ -11,7 +11,9 @@ RUN rbenv exec bundle install
 
 ADD . $HOME/app/
 USER root
-RUN chown -R web /home/web/app
+RUN mkdir -p $HOME/app/public/uploads
+RUN chown -R web $HOME/app
+RUN chown -R web $HOME/app/public/uploads
 USER web
 WORKDIR $HOME/app/
 RUN bundle exec rake assets:clobber; bundle exec rake tmp:clear; bundle exec rake assets:precompile; bundle exec rake sitemap:refresh
