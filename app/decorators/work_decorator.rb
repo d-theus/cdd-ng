@@ -23,7 +23,7 @@ class WorkDecorator
       rel: 'nofollow,noindex',
       title: "Visit github project page: #{@object.github_link}",
       class: 'btn btn-fab btn-primary' do
-        @context.image_tag('gh-i.svg', width: '18px', class: 'svg-icon')
+        @context.raw '<i class="socicon socicon-github"></i>'
     end
   end
 
