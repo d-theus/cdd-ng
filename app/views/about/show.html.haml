@@ -199,21 +199,47 @@
         %section
           %h2 Experience and achievments
 
+          %h3= link_to 'magic-ice.org', 'https://magic-ice.org', target: '_blank', rel: 'nofollow noindex noopener'
           %p
-            %h3
-              = link_to 'vncrec', 'https://github.com/d-theus/vncrec-ruby', target: '_blank', rel: 'nofollow noindex noopener'
+            Simple website for ice skating school. Design, Code, Deployment, Speed optimization, SEO. Recently dockerized it.
+            Here I used RoR + Nginx as back-end and PostgreSQL as DB.
+
+          %h3= link_to 'www.homemade-msk.ru', 'https://www.homemade-msk.ru', target: '_blank', rel: 'nofollow noindex noopener'
+          %p
+            This guys sell weekly meals packs. The site uses Dockerized RoR + Nginx + PG + Postfix. Orders, managing recipes,
+            weekly mailing. There was also some image processing (ImageMagick, CarrierWave), svg optimization, image scaling
+            for page speed (here I worked heavily on load time).
+
+          %h3= link_to 'www.mercedes177.ru', 'https://www.mercedes177.ru', target: '_blank', rel: 'nofollow noindex noopener'
+          %p
+            Mercedes automobile parts store. It's a bit... clunky in terms of design, but that's what client wanted.
+            Speaking technically, here I used RoR + Nginx as back-end, AngularJS as front-end, PostgreSQL as DB. There
+            is also some fancy image processing with ImageMagick (CarrierWawe and MiniMagic gems).
+
+          %h3 Dockerized my workflow
+          %p
+            Docker is extremely useful tool. With it, I unified my application's stacks, so I can deploy
+            a new server with nginx, rails and pg installed, enabled fluentd logging in just a few minutes.
+          %p Here are some of my Dockerfiles:
+          %ul.list-unstyled
+            %li= link_to 'rails', 'https://github.com/d-theus/rails-dockerfile'
+            %li= link_to 'nginx', 'https://github.com/d-theus/nginx-dockerfile'
+            %li= link_to 'postfix', 'https://github.com/d-theus/postfix-dockerfile'
+
+          %h3= link_to 'vncrec', 'https://github.com/d-theus/vncrec-ruby', target: '_blank', rel: 'nofollow noindex noopener'
+          %p
             Gem created for recording VNC sessions using plain raw format or ffmpeg encoding.
             Native VNC stream decoding procedures. Currently this solution works for registration
             of video data from workstations on several military objects.
 
+          %h3= link_to 'avrsh', 'https://github.com/d-theus/avrsh', target: '_blank', rel: 'nofollow noindex noopener'
           %p
-            %h3
-              = link_to 'avrsh', 'https://github.com/d-theus/avrsh', target: '_blank', rel: 'nofollow noindex noopener'
-            Small and simple shell written on C using recursive descend.
+            Small and simple shell written in C using recursive descend.
 
+          %h3= link_to 'rspec-launchbox', 'https://github.com/d-theus/rspec-launchbox', target: '_blank', rel: 'nofollow noindex noopener'
           %p
-            %h3
-              = link_to 'rspec-launchbox', 'https://github.com/d-theus/rspec-launchbox', target: '_blank', rel: 'nofollow noindex noopener'
             An attempt to simplify executables testing with rspec.
+
       %section.text-center
         = link_to 'GET IN TOUCH', new_contact_path, class: 'btn btn-primary btn-raised'
+        = link_to 'PORTFOLIO', portfolio_path, class: 'btn btn-info'
