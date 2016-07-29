@@ -36,4 +36,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  config.queue = {
+    host: 'localhost',
+    port: 6380,
+    db: 0
+  }
 end

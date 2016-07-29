@@ -61,9 +61,12 @@ namespace :docker do
   end
 
   task :persistence do
+    config = YAML.load(File.read File.expand_path('docker-compose.yml'))
     on roles :app do
-      execute 'docker', 'volume', 'create', '--name cddevel-uploads'
-      execute 'docker', 'volume', 'create', '--name cddevel-dbdata'
+      config['volumes'].each do |_, val|
+        name = val['external']['name']
+        execute "docker volume ls | grep #{name} &>/dev/null; if [ $? -ne 0 ]; then docker volume create --name #{name}; fi"
+      end
     end
   end
 end
@@ -77,6 +80,6 @@ namespace :deploy do
 
   after :updated,   'docker:compose:down' unless fetch(:skip_compose_down, false)
   after :published, :upload_secret
-  after :published, 'docker:persistence' if fetch(:make_persistence_containers, false)
+  after :published, 'docker:persistence'
   after :published, 'docker:compose:up'
 end

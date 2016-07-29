@@ -6,6 +6,9 @@ volumes:
   uploads:
     external:
       name: 'cddevel-uploads'
+  queuedata:
+    external:
+      name: 'cddevel-queuedata'
 
 services:
   db:
@@ -37,6 +40,9 @@ services:
 
   app3:
     <<: *app
+    command: bundle exec sidekiq
+    depends_on:
+      - queue
 
   proxy:
     image: 'dtheus/nginx'
@@ -51,4 +57,11 @@ services:
       - app1
       - app2
       - app3
+
+  queue:
+    build:
+      context: 'https://github.com/d-theus/redis-persistence-dockerfile.git'
+    env_file: .rbenv-vars
+    volumes:
+      - 'queuedata:/var/redis'
 

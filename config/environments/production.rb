@@ -75,4 +75,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.queue = {
+    host: 'queue',
+    port: 6379,
+    db: 0
+  }
 end
