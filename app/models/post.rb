@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  acts_as_taggable
+  acts_as_ordered_taggable
   extend FriendlyId
   friendly_id :title, use: [:slugged]
   has_and_belongs_to_many :pictures, join_table: :posts_post_pictures, class_name: 'PostPicture'
