@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719095705) do
+ActiveRecord::Schema.define(version: 20160728173537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,10 +55,11 @@ ActiveRecord::Schema.define(version: 20160719095705) do
 
   create_table "post_pictures", force: true do |t|
     t.string   "caption",    default: ""
-    t.string   "image",                   null: false
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.string   "image_tmp"
   end
 
   add_index "post_pictures", ["slug"], name: "index_post_pictures_on_slug", unique: true, using: :btree
@@ -104,6 +105,7 @@ ActiveRecord::Schema.define(version: 20160719095705) do
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_tmp"
   end
 
 end

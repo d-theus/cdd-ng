@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.7'
 
 gem 'carrierwave'
+gem 'carrierwave_backgrounder'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'devise-i18n-bootstrap'
@@ -28,6 +29,8 @@ gem 'acts-as-taggable-on'
 gem 'friendly_id', '~> 5.1.0'
 gem 'redcarpet'
 gem 'rouge'
+gem 'redis-rails'
+gem 'sidekiq'
 
 group :development do
   gem 'capistrano'

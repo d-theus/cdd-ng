@@ -6,6 +6,7 @@ class PostPicture < ActiveRecord::Base
   friendly_id :caption, use: [:slugged]
 
   mount_uploader :image, PostPictureUploader
+  store_in_background :image
 
   private
 
