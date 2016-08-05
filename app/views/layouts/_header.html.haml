@@ -5,7 +5,9 @@
         %i.icon-bar
         %i.icon-bar
         %i.icon-bar
-      = link_to 'CAFFEINEDRIVENDEVEL', posts_url, class: 'navbar-brand'
+      = link_to posts_url, class: 'navbar-brand' do
+        = image_tag 'logo.svg'
+        %span CAFFEINEDRIVENDEVEL
     .collapse.navbar-collapse#navbar_collapse
       %ul.nav.navbar-nav.navbar-right
         = nav_link 'Blog', recent_posts_url
