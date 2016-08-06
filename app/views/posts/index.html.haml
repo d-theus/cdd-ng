@@ -1,26 +1,25 @@
-.row
-  .col-xs-12.col-md-8.col-md-offset-1.well.jumbo-card
-    %ul.list-group.posts
-      - @posts.each_with_index do |post, i|
-        %li.list-group-item
-          .row-picture
-            != post.thumb
-          .row-content
-            .pull-right.btn-group-vertical
-              %a.btn.btn-primary{href: post_path(post)} READ
-              - if admin?
-                %a.btn.btn-info{href: edit_post_path(post), title: 'edit'}
-                  EDIT
-            %h3.list-group-item-heading= post.title
-            .list-group-item-text
-              %span.text-nowrap.text-muted
-                %small= post.created_at.strftime('%-d %b, %Y')
-                != post.tags
-            %p.list-group-item-text
-              %p!= post.summary
-        - unless i == @posts.size - 1
-          %li.list-group-separator
-    = will_paginate @posts, page_links: false, previous_label: 'Newer', next_label: 'Older', class: 'pager'
+.col-xs-12.col-md-8.col-md-offset-1
+  %ul.list-group.posts
+    - @posts.each_with_index do |post, i|
+      %li.list-group-item
+        .row-picture
+          != post.thumb
+        .row-content
+          .pull-right.btn-group-vertical
+            %a.btn.btn-primary{href: post_path(post)} READ
+            - if admin?
+              %a.btn.btn-info{href: edit_post_path(post), title: 'edit'}
+                EDIT
+          %h3.list-group-item-heading= post.title
+          .list-group-item-text
+            %span.text-nowrap.text-muted
+              %small= post.created_at.strftime('%-d %b, %Y')
+              != post.tags
+          %p.list-group-item-text
+            %p!= post.summary
+      - unless i == @posts.size - 1
+        %li.list-group-separator
+  = will_paginate @posts, page_links: false, previous_label: 'Newer', next_label: 'Older', class: 'pager'
 
   %aside.col-xs-12.col-md-3
     %br/

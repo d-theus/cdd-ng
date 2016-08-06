@@ -1,29 +1,28 @@
-.row
-  .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-1.col-lg-7.col-lg-offset-2.well.jumbo-card
-    %article.col-xs-12.col-sm-10.col-sm-offset-1.post
-      != find_and_preserve render_post @post
+.col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-1.col-lg-7.col-lg-offset-2.well.jumbo-card
+  %article.col-xs-12.col-sm-10.col-sm-offset-1.post
+    != find_and_preserve render_post @post
 
-  %aside.col-xs-12.col-md-3
-    .col-xs-12.col-sm-10.col-sm-offset-1.col-lg-8.col-lg-offset-2
-      %section.row
-        .panel.panel-default.text-center
-          .panel-heading
-            %h4 Tagged:
-          .panel-body
-            - @post.tag_list.each do |tag|
-              %span.label.label-default= tag
-      %section.row
-        .panel.panel-default.text-center
-          .panel-heading
-            %h4 See also
-          .panel-body
-            %ul.list-group
-              - @see_also.each_with_index do |post, i|
-                %li.list-group-item
-                  %h4
-                  = link_to post.title, post_path(post)
-                - unless i == @see_also.size - 1
-                  %li.list-group-separator
+%aside.col-xs-12.col-md-3
+  .col-xs-12.col-sm-10.col-sm-offset-1.col-lg-8.col-lg-offset-2
+    %section.row
+      .panel.panel-default.text-center
+        .panel-heading
+          %h4 Tagged:
+        .panel-body
+          - @post.tag_list.each do |tag|
+            %span.label.label-default= tag
+    %section.row
+      .panel.panel-default.text-center
+        .panel-heading
+          %h4 See also
+        .panel-body
+          %ul.list-group
+            - @see_also.each_with_index do |post, i|
+              %li.list-group-item
+                %h4
+                = link_to post.title, post_path(post)
+              - unless i == @see_also.size - 1
+                %li.list-group-separator
 
 - content_for :page_heading do
   %hgroup.row

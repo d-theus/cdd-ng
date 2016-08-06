@@ -1,7 +1,6 @@
 - content_for :page_heading do
   %h1 Edit work '#{@work.title}'
 
-.row
-  .col-xs-12.col-md-8.col-md-offset-2
-    .well.jumbo-card
-      = render partial: 'form'
+.col-xs-12.col-md-8.col-md-offset-2
+  .well.jumbo-card
+    = render partial: 'form'

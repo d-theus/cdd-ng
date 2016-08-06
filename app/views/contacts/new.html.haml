@@ -2,11 +2,10 @@
   .row.text-center
     %h1 Contact me
 
-.row
-  .col-xs-12.col-sm-8.col-sm-offset-2.col-lg-6.col-lg-offset-3
-    .well.jumbo-card
-      = simple_form_for @contact, class: 'form-horizontal' do |f|
-        = f.input :name, hint: 'Your name'
-        = f.input :reply, hint: 'How to contact you (email, linkedin, github, etc.)'
-        = f.input :content, hint: 'Your message'
-        = f.submit 'LEAVE MESSAGE', class: 'btn btn-primary'
+.col-xs-12.col-sm-8.col-sm-offset-2.col-lg-6.col-lg-offset-3
+  .well.jumbo-card
+    = simple_form_for @contact, class: 'form-horizontal' do |f|
+      = f.input :name, hint: 'Your name'
+      = f.input :reply, hint: 'How to contact you (email, linkedin, github, etc.)'
+      = f.input :content, hint: 'Your message'
+      = f.submit 'LEAVE MESSAGE', class: 'btn btn-primary'
