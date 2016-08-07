@@ -1,4 +1,4 @@
-.col-xs-12.col-md-8.col-md-offset-1
+.col-xs-12.col-md-8.col-md-offset-1.well.jumbo-card
   %ul.list-group.posts
     - @posts.each_with_index do |post, i|
       %li.list-group-item
@@ -21,15 +21,15 @@
         %li.list-group-separator
   = will_paginate @posts, page_links: false, previous_label: 'Newer', next_label: 'Older', class: 'pager'
 
-  %aside.col-xs-12.col-md-3
-    %br/
-    %section.row#tags
-      .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.text-center
-        %h4.text-primary Tags
-        %ul.list-unstyled.tags
-          - @tags.each do |tg|
-            %li
-              %a.label{href: '#'}= tg
+%aside.col-xs-12.col-md-3
+  %br/
+  %section.row#tags
+    .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.text-center
+      %h4.text-primary Tags
+      %ul.list-unstyled.tags
+        - @tags.each do |tg|
+          %li
+            %a.label{href: '#'}= tg
 
 - content_for :page_heading do
   %hgroup.row
