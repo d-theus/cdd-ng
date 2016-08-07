@@ -77,4 +77,32 @@ EOF
       end
     end
   end
+
+  describe '#related_posts' do
+    subject { FactoryGirl.create(:post, tag_list: %(tag1 tag2 tag3)) }
+    it 'returns an enumerable' do
+      expect(subject.related).to respond_to(:each)
+    end
+    context 'with other posts available' do
+      before do
+        Post.delete_all
+        5.times do |i|
+          FactoryGirl.create(:post, tag_list: [*1..5].take(i + 1), slug: "post-#{i}")
+        end
+      end
+
+      context 'with no tags' do
+        subject { FactoryGirl.create(:post, tag_list: []) }
+        it 'returns no posts' do
+          expect(subject.related).to be_empty
+        end
+      end
+      context 'with some tags' do
+        it 'returns posts based on similar tags' do
+          expect(subject).to receive(:find_related_tags)
+          subject.related
+        end
+      end
+    end
+  end
 end

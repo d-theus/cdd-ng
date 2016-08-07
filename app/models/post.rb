@@ -14,6 +14,14 @@ class Post < ActiveRecord::Base
     text.split('<!--cut-->')[-2] || ''
   end
 
+  def related
+    if tags.any?
+      find_related_tags.limit(5)
+    else
+      []
+    end
+  end
+
   private
 
   def should_generate_new_friendly_id?

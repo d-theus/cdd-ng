@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     if request.path != post_path(@post)
       redirect_to post_path(@post), status: :moved_permanently
     end
-    @see_also = Post.where.not(id: @post)
+    @see_also = @post.related
   end
 
   def index
