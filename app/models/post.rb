@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
 
   def related
     if tags.any?
-      find_related_tags.limit(5)
+      find_related_tags.try(:limit, 5) || []
     else
       []
     end
