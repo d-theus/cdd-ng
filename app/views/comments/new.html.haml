@@ -1,0 +1,30 @@
+%hgroup.row
+  .col-xs-12.text-center
+    %h2 New comment
+- if @new_comment.errors.any?
+  .row.text-center
+    .alert.alert-danger
+      %strong Error!
+      Check fields and try to submit again!
+.row
+  .col-xs-12.col-sm-10.col-sm-offset-1
+    = simple_form_for [@post, @new_comment], html: { class: 'form-inline', data: { remote: true } } do |f|
+      .row
+        .col-xs-12
+          = f.input :name
+      .row
+        .col-xs-12
+          = f.input :text
+      .row
+        .col-xs-12
+          = f.input :avatar_url
+      .row
+        .col-xs-12
+          = f.input :profile_link
+      .row
+        .col-xs-12
+          = f.input :post_id, as: :hidden
+      .row
+        .col-xs-12
+          = f.submit 'COMMENT', class: 'btn btn-primary pull-right'
+%br/

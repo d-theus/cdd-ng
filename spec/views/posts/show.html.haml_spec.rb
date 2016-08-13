@@ -37,6 +37,12 @@ RSpec.describe 'posts/show', type: :view do
     expect(rendered).to have_content(see_also.last.title)
   end
 
+  it 'has SHOW COMMENTS link' do
+    render
+    expect(rendered).to have_content('SHOW COMMENTS')
+    expect(response).to have_selector("a[href=\"#{post_comments_path(view.assigns[:post])}\"]")
+  end
+
   context 'when admin signed in' do
     before { allow(view).to receive(:admin?).and_return(true)}
     it 'has action button "create new post"' do

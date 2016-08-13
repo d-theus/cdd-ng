@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: [:slugged]
   has_and_belongs_to_many :pictures, join_table: :posts_post_pictures, class_name: 'PostPicture'
+  has_many :comments, dependent: :destroy
 
   validates :title, presence: true
   validates :text, presence: true

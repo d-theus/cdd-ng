@@ -1,0 +1,10 @@
+%li.list-group-item{ id: "comment-#{comment.id}" }
+  .row-picture
+    != comment.avatar || comment.avatar_placeholder
+  .row-content
+    %p
+      != comment.profile_link || comment.name
+    %p= comment.text
+    %p.text-muted
+      %small
+        %em= comment.created_at

@@ -13,6 +13,12 @@ ready = ->
       textarea.val(getText())
     editor.getSession().setMode('ace/mode/markdown')
 
+  if $('#comments').length
+    $('a#show_comments').on 'ajax:success', (_, data)->
+      $('#comments').html(data)
+      $('#comments').removeClass('hidden')
+      $('a#show_comments').hide()
+
 getPreview = ->
   $.ajax('/blog/posts/preview', data: { post: { text: getText()}}, async: false).responseText
 

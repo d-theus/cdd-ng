@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get :preview, on: :collection
       get :recent, on: :collection, action: :index
       get 'tagged/:tag', on: :collection, action: :tagged, as: :tagged
+      resources :comments
     end
     resources :pictures, except: [:show, :new, :edit], controller: :pictures
   end

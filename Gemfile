@@ -45,8 +45,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-html-matchers'
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'factory_girl_rails'
   gem 'timecop'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'database_cleaner'
 end

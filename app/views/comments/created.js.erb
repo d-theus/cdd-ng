@@ -1,0 +1,8 @@
+$('ul#comments_list').append(
+  "<%= j render(partial: 'show', locals: { comment: @comment }) %>"
+);
+$('#new_comment_modal textarea').val("")
+$('#new_comment_modal').modal('hide');
+$('html,body').animate({
+  scrollTop: $("#comment-<%=@comment.id%>").offset().top
+});

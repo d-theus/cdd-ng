@@ -61,6 +61,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.11.1)
+      capybara (>= 2.3.0, < 2.8.0)
+      json
     carrierwave (0.11.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -117,6 +120,7 @@ GEM
     concurrent-ruby (1.0.1)
     connection_pool (2.2.0)
     daemons (1.2.3)
+    database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     devise (3.5.6)
       bcrypt (~> 3.0)
@@ -399,10 +403,12 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rbenv
   capybara
+  capybara-webkit
   carrierwave
   carrierwave_backgrounder
   chef
   coffee-rails (~> 4.0.0)
+  database_cleaner
   devise
   devise-i18n-bootstrap
   factory_girl_rails

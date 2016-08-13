@@ -1,6 +1,12 @@
-.col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-1.col-lg-7.col-lg-offset-2.well.jumbo-card
+%section.col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-1.col-lg-7.col-lg-offset-2.well.jumbo-card
   %article.col-xs-12.col-sm-10.col-sm-offset-1.post
     != find_and_preserve render_post @post
+
+
+%section.col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-1.col-lg-7.col-lg-offset-2
+  = link_to 'SHOW COMMENTS', post_comments_path(@post), id: 'show_comments', class: 'btn btn-primary', data: { remote: true, 'disable-with' => 'Loading comments..'  }
+
+.col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-1.col-lg-7.col-lg-offset-2.well.hidden#comments
 
 %aside.col-xs-12.col-md-3
   .col-xs-12.col-sm-10.col-sm-offset-1.col-lg-8.col-lg-offset-2
@@ -36,3 +42,5 @@
   - else
     %a.btn.btn-info.btn-fab{href: ''}
       %i.material-icons share
+
+= javascript_include_tag 'posts'

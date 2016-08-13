@@ -1,0 +1,9 @@
+$('form#new_comment .form-group.has-error p.help-block').each(function(){
+   $(this).remove();
+});
+$('form#new_comment .form-group').removeClass('has-error');
+
+<% @comment.errors.each do |k, m| %>
+  $('form#new_comment .form-group.comment_<%= k %>').addClass('has-error');
+  $('form#new_comment .form-group.comment_<%= k %>').append('<p class="small help-block"><%= m %></p>');
+<% end %>

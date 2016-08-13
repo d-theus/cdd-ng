@@ -1,0 +1,16 @@
+-# This code is meant to be embedded into a well
+
+.col-xs-12.col-sm-8.col-sm-offset-2
+  %h2 Comments
+.col-xs-12.col-sm-8.col-sm-offset-2
+  = link_to 'ADD A COMMENT', new_post_comment_path(@post), class: 'btn btn-primary', data: { toggle: :modal, target: '#new_comment_modal' }
+  #new_comment_modal.modal
+    .modal-dialog
+      .modal-content
+
+.col-xs-12.col-sm-8.col-sm-offset-2
+  %ul.list-group#comments_list
+    - @comments.each_with_index do |comment, i|
+      = render partial: 'show', layout: false, locals: { comment: comment }
+      - unless i == @comments.size - 1
+        %li.list-group-separator
