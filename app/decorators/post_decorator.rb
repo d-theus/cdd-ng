@@ -1,6 +1,4 @@
-class PostDecorator
-  include ActionView::Helpers
-  include Rails.application.routes.url_helpers
+class PostDecorator < Decorator::Base
 
   DEFAULT_EXTENSIONS = {
     no_intra_emphasis: true,
@@ -10,11 +8,6 @@ class PostDecorator
     superscript: true,
     footnotes: true
   }
-
-  def initialize(obj, ctx)
-    @object = obj
-    @context = ctx
-  end
 
   def render
     Redcarpet::Markdown.new(PostRenderers::Markdown, DEFAULT_EXTENSIONS).render(@object.text)
@@ -48,13 +41,5 @@ class PostDecorator
 
   def to_s
     @object.slug
-  end
-
-  def method_missing(meth, *args, &blk)
-    @object.send(meth, *args, &blk)
-  end
-
-  def respond_to_missing?(meth, include_private = false)
-    @object.respond_to? meth
   end
 end
