@@ -11,7 +11,7 @@ module PostRenderers
       src = if link[%r{^(http[s]?|/)}]
               link
             else
-              PostPicture.friendly.find_by(slug: link).try(:image).try(:small) || '/oops.png'
+              PostPicture.friendly.find_by(slug: link).try(:image).try(:small) || ''
             end
       %(<figure class="post-figure"><a href='#{src}'><img src='#{src}' alt='#{alt_text}' /></a><figcaption>#{title}</figcaption></figure>)
     end
