@@ -2,6 +2,12 @@
   .row.text-center
     %h1 About
 
+- content_for :title do
+  = raw "About | Caffeine Driven Devel"
+
+- content_for :meta_description do
+  What's going on here. About author. Contacts.
+
 - content_for :action do
   %a.btn.btn-info.btn-fab{href: new_contact_path, title: 'Contact Me'}
     %i.material-icons person
@@ -11,8 +17,9 @@
     %section
       %h2 This website
       %p
-        is serving one main purpose: it is part of my portfolio, and is intended to be the most descriptive one,
-        regarding me as backend engineer.
+        is mainly a blog about backend development and administration. It's also my personal sandbox
+        and portfolio. I hope it will be as much useful for the reader as it helps me to become a
+        better developer.
     %section
       %h2 Me
       %p Hello. My name is Andrew. I am web developer/software engineer specializing in Ruby backend development.

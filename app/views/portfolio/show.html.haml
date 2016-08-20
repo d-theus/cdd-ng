@@ -3,6 +3,9 @@
     .col-xs-12.col-md-10.col-md-offset-1.text-center
       %h1 Portfolio
 
+- content_for :title do
+  Portfolio | Caffeine Driven Devel
+
 - content_for :action do
   - if admin?
     %a.btn.btn-info.btn-fab#new_work_link{href: new_work_path, title: 'Contact'}

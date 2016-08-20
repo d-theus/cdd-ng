@@ -9,7 +9,7 @@
     %meta(name="apple-mobile-web-app-status-bar-style" content="#3c3c3c")
     %meta{name: "robots", content: content_for?(:meta_robots) ? yield(:meta_robots) : 'index,follow' }
     %meta{name: "description", content: content_for?(:meta_description) ? yield(:meta_description) : 'lorem ipsum'}
-    %title= content_for?(:title) ? yield(:title) : 'Caffeine Driven Devel | Website development'
+    %title= content_for?(:title) ? yield(:title) : 'Caffeine Driven Devel | Web development / Backend'
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
     = render partial: 'layouts/favicon'
