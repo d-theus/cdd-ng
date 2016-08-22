@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.4.1'
+lock '3.6.0'
 
 set :application, 'cdd-ng'
 set :repo_url, 'https://github.com/d-theus/cdd-ng.git'
