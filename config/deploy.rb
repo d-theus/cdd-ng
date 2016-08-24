@@ -53,8 +53,35 @@ namespace :docker do
 
     task :down do
       on roles :app do
+        if test("[ -d #{current_path} ]") and capture('docker ps -q').lines.any?
+          within current_path do
+            execute 'docker-compose', 'down'
+          end
+        end
+      end
+    end
+
+    task :onboot do
+      on roles :app do
+        execute "echo '@reboot cd #{current_path} && while [[ -z  $(#{capture 'which pgrep'} docker) ]]; do sleep 2; done && #{capture 'which docker-compose'} up -d' | crontab -"
+      end
+    end
+
+
+    task :sitemap do
+      on roles :app do
         within current_path do
-          execute 'docker-compose', 'down'
+          sleep 2
+          execute 'docker-compose', 'exec', 'app1', 'bundle exec rake sitemap:refresh'
+        end
+      end
+    end
+
+    task :migrate do
+      on roles :app do
+        within current_path do
+          sleep 2
+          execute 'docker-compose', 'exec', 'app1', 'bundle exec rake db:migrate'
         end
       end
     end
@@ -82,4 +109,7 @@ namespace :deploy do
   after :published, :upload_secret
   after :published, 'docker:persistence'
   after :published, 'docker:compose:up'
+  after :finished,  'docker:compose:migrate'
+  after :finished,  'docker:compose:sitemap'
+  after :finished,  'docker:compose:onboot'
 end

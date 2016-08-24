@@ -16,6 +16,6 @@ RUN chown -R web $HOME/app
 RUN chown -R web $HOME/app/public/uploads
 USER web
 WORKDIR $HOME/app/
-RUN bundle exec rake assets:clobber; bundle exec rake tmp:clear; bundle exec rake assets:precompile; bundle exec rake sitemap:refresh
+RUN bundle exec rake assets:clobber; bundle exec rake tmp:clear; bundle exec rake assets:precompile
 
 CMD bundle exec rails s --pid=/tmp/rails.pid
