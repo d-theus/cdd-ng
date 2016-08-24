@@ -13,8 +13,7 @@
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
     = render partial: 'layouts/favicon'
-    -#= render file: 'layouts/_ga'
-    -#= render file: 'layouts/_ym'
+    = render file: 'layouts/_ga'
     = javascript_include_tag "application"
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
