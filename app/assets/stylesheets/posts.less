@@ -1,11 +1,3 @@
-.pre{
-  white-space: pre-line;
-  word-wrap: normal;
-  background: transparent;
-  text-align: left;
-  font-family: @font-family-base;
-}
-
 .ace_editor{
   min-height: 500px;
   margin-top: 0;
@@ -48,16 +40,25 @@ form #post_text{
 }
 
 code{
-  background: #eee;
+  background: transparent;
   color: darken(@brand-primary, 15%);
   overflow-x: scroll;
 }
 
-pre{
+.pre{
   color: white;
+  white-space: pre-line;
+  word-wrap: normal;
+  background: transparent;
+  text-align: left;
+  font-family: @font-family-base;
 }
 
-pre code{
-  color: auto;
-  white-space: inherit;
+
+pre.highlight{
+  background: transparent;
+  code {
+    color: auto;
+    white-space: inherit;
+  }
 }
