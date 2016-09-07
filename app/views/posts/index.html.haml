@@ -12,9 +12,11 @@
                 EDIT
           %h3.list-group-item-heading= post.title
           .list-group-item-text
-            %span.text-nowrap.text-muted
+            %span.text-muted
               %small= post.created_at.strftime('%-d %b, %Y')
-              != post.tags
+              &nbsp;
+              &nbsp;
+              %small!= post.tags
           %p.list-group-item-text
             %p!= post.summary
       - unless i == @posts.size - 1
