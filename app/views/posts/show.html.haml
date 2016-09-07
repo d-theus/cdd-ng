@@ -25,7 +25,7 @@
                 %li.list-group-separator
 
 %section.col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-1.col-lg-7.col-lg-offset-2
-  = link_to 'SHOW COMMENTS', post_comments_path(@post), id: 'show_comments', class: 'btn btn-primary', data: { remote: true, 'disable-with' => 'Loading comments..'  }
+  = link_to 'SHOW COMMENTS', post_comments_path(post_id: @post.slug), id: 'show_comments', class: 'btn btn-primary', data: { remote: true, 'disable-with' => 'Loading comments..'  }
 
 .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-1.col-lg-7.col-lg-offset-2.well.hidden#comments
 - content_for :page_heading do
@@ -38,10 +38,15 @@
 
 - content_for :action do
   - if admin?
-    %a.btn.btn-info.btn-fab{href: edit_post_path(@post)}
+    %a.btn.btn-info.btn-fab{href: edit_post_path(@post.id)}
       %i.material-icons mode_edit
   - else
-    %a.btn.btn-info.btn-fab{href: ''}
+    %a.btn.btn-info.btn-fab{data: { target: '#share_modal', toggle: 'modal'}}
       %i.material-icons share
 
+- unless admin?
+  = render partial: 'share_modal'
 = javascript_include_tag 'posts'
+- content_for :meta do
+  = raw @post.meta_for_facebook
+  = raw @post.meta_for_twitter

@@ -3,8 +3,8 @@ require 'capybara/rspec'
 
 RSpec.describe 'posts/show', type: :view do
   include Capybara::DSL
-  let(:pst) { FactoryGirl.build_stubbed(:post, :with_pictures, tag_list: ['tag1', 'tag2']) }
-  let(:see_also) { Array.new(3) { FactoryGirl.build_stubbed(:post) } }
+  let(:pst) { PostDecorator.new(FactoryGirl.build_stubbed(:post, :with_pictures, tag_list: ['tag1', 'tag2'], slug: 'slug'), ApplicationController.new.view_context) }
+  let(:see_also) { Array.new(3) { FactoryGirl.build_stubbed(:post, slug: 'someslug') } }
 
   before do
     assign :post, pst

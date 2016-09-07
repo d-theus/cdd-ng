@@ -77,4 +77,77 @@ RSpec.describe PostDecorator, type: :model do
       expect(dec.render).not_to have_content  '-cut-'
     end
   end
+
+  describe 'share buttons' do
+    let(:title) { 'Post title' }
+    let(:pst) { FactoryGirl.build_stubbed(:post, title: title, slug: 'slug', id: 1) }
+    let(:dec) { PostDecorator.new(pst, vctx) }
+
+    describe '#share_with_facebook_button' do
+      let(:app_id) { id = Rails.application.secrets.facebook_app_id || fail("Set facebook app_id"); id.to_s }
+      before { ENV['FACEBOOK_APP_ID'] = app_id.to_s }
+
+      it 'outputs valid button' do
+        expect(dec.share_with_facebook_button).to have_css("a[href^='https://facebook.com/dialog/share']")
+        expect(dec.share_with_facebook_button).to match /href=#{CGI.escape post_url(pst)}/
+        expect(dec.share_with_facebook_button).to match /redirect_url=#{CGI.escape post_url(pst)}/
+        expect(dec.share_with_facebook_button).to match /app_id=#{CGI.escape app_id}/
+      end
+    end
+
+    describe '#share_with_twitter_button' do
+      it 'outputs valid button' do
+        expect(dec.share_with_twitter_button).to have_css("a[href^='https://twitter.com/intent/tweet']")
+        expect(dec.share_with_twitter_button).to include "text=#{CGI.escape pst.title}"
+        expect(dec.share_with_twitter_button).to match /url=#{CGI.escape post_url(pst)}/
+      end
+    end
+
+    describe '#share_with_vk_button' do
+      it 'outputs valid button' do
+      end
+    end
+  end
+
+  describe 'social meta information' do
+    let(:title) { 'Post title' }
+    let(:summary) { 'summary here' }
+    let(:text) do
+      <<-EOF
+      #{summary}
+
+      <--cut-->
+
+      main content
+      EOF
+    end
+    let(:summary) { }
+    let(:pst) { FactoryGirl.build_stubbed(:post, title: title, slug: 'slug', text: text, id: 1) }
+    let(:dec) { PostDecorator.new(pst, vctx) }
+
+    describe 'OG' do
+      let(:app_id) { id = Rails.application.secrets.facebook_app_id || fail("Set facebook app_id"); id.to_s }
+
+      it 'has [fb:app_id]' do
+        expect(dec.meta_for_facebook).to have_selector %(meta[property="fb:app_id"][content="#{app_id}"]), visible: false
+      end
+      it 'has [og:*]' do
+        expect(dec.meta_for_facebook).to have_selector %(meta[property="og:type"][content="article"]), visible: false
+        expect(dec.meta_for_facebook).to have_selector %(meta[property="og:url"][content="#{post_url(pst)}"]), visible: false
+        expect(dec.meta_for_facebook).to have_selector %(meta[property="og:title"][content="#{pst.title}"]), visible: false
+        expect(dec.meta_for_facebook).to have_selector %(meta[property="og:image"][content="#{image_url "logo.svg"}"]), visible: false
+        expect(dec.meta_for_facebook).to have_selector %(meta[property="og:description"][content="#{pst.summary}"]), visible: false
+      end
+    end
+
+    describe 'twitter' do
+      it 'has [twitter:*]' do
+        expect(dec.meta_for_twitter).to have_selector %(meta[name="twitter:card"][content="summary"]), visible: false
+        expect(dec.meta_for_twitter).to have_selector %(meta[name="twitter:site"][content="@cddevel"]), visible: false
+        expect(dec.meta_for_twitter).to have_selector %(meta[name="twitter:title"][content="#{pst.title}"]), visible: false
+        expect(dec.meta_for_twitter).to have_selector %(meta[name="twitter:description"][content="#{pst.summary}"]), visible: false
+        expect(dec.meta_for_twitter).to have_selector %(meta[name="twitter:image"][content="#{image_url "logo.svg"}"]), visible: false
+      end
+    end
+  end
 end

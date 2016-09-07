@@ -41,4 +41,6 @@ Rails.application.configure do
     port: 6380,
     db: 0
   }
+
+  Rails.application.routes.default_url_options[:host] = 'cddevel.com'
 end

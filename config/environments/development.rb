@@ -39,4 +39,7 @@ Rails.application.configure do
     port: 6380,
     db: 0
   }
+
+  config.action_controller.asset_host = 'http://localhost:3000'
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 end

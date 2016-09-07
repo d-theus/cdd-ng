@@ -39,6 +39,39 @@ class PostDecorator < Decorator::Base
     out
   end
 
+  def share_with_facebook_button
+    fail 'No app_id specified for facebook' unless app_id = Rails.application.secrets.facebook_app_id
+    link_to 'Share with Facebook', 'https://facebook.com/dialog/share?' + { 'display' => 'page', 'href' => post_url(@object, host: 'cddevel.com'), 'redirect_url' => post_url(@object, host: 'cddevel.com'), 'app_id' => app_id }.to_query, rel: 'noopener', target: '_blank'
+  end
+
+  def share_with_twitter_button
+    link_to 'Share with Twitter', 'https://twitter.com/intent/tweet?' + { 'text' => @object.title, 'url' => post_url(@object) }.to_query, rel: 'noopener', target: '_blank'
+  end
+
+  def share_with_vk_button
+  end
+
+  def meta_for_facebook
+    out = ""
+    out << tag(:meta, property: 'fb:app_id', content: Rails.application.secrets.facebook_app_id)
+    out << tag(:meta, property: 'og:type',   content: 'article')
+    out << tag(:meta, property: 'og:url',    content: post_url(@object))
+    out << tag(:meta, property: 'og:title',  content: @object.title)
+    out << tag(:meta, property: 'og:image',  content: "#{Rails.configuration.action_controller.asset_host}#{image_path("logo.svg")}")
+    out << tag(:meta, property: 'og:description',  content: @object.summary)
+    out
+  end
+
+  def meta_for_twitter
+    out = ''
+    out << tag(:meta, name: 'twitter:card',  content: 'summary')
+    out << tag(:meta, name: 'twitter:site',  content: '@cddevel')
+    out << tag(:meta, name: 'twitter:title',  content: @object.title)
+    out << tag(:meta, name: 'twitter:description',  content: @object.summary)
+    out << tag(:meta, name: 'twitter:image',  content: "#{Rails.configuration.action_controller.asset_host}#{image_path("logo.svg")}")
+    out
+  end
+
   def to_s
     @object.slug
   end

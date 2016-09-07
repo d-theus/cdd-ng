@@ -58,6 +58,9 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.include Rails.application.routes.url_helpers, type: :model
+  config.include ActionView::Helpers::AssetUrlHelper
+
   #config.include Devise::TestHelpers, type: :controller
   #config.include ControllerHelpers, type: :controller
 end

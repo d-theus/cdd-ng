@@ -10,6 +10,7 @@
     %meta{name: "robots", content: content_for?(:meta_robots) ? yield(:meta_robots) : 'index,follow' }
     %meta{name: "description", content: content_for?(:meta_description) ? yield(:meta_description) : 'lorem ipsum'}
     %title= content_for?(:title) ? yield(:title) : 'Caffeine Driven Devel | Web development / Backend'
+    = yield(:meta) if content_for? :meta
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
     = render partial: 'layouts/favicon'

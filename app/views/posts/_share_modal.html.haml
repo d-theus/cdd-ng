@@ -1,0 +1,17 @@
+#share_modal.modal
+  .modal-dialog
+    .modal-content
+      .row
+        .col-xs-12.text-center
+          %h3 Share post
+          %h4 &laquo;#{@post.title}&raquo;
+      .row
+        .col-xs-12.text-center
+          %i.socicon.socicon-twitter
+          = link_to 'Share with Twitter', 'https://twitter.com/intent/tweet?' + { 'text' => @post.title, 'url' => post_url(@post) }.to_query, rel: 'noopener', target: '_blank'
+          %br/
+          %i.socicon.socicon-facebook
+          = link_to 'Share with Facebook', 'https://facebook.com/dialog/share?' + { 'display' => 'page', 'href' => post_url(@post, host: 'cddevel.com'), 'redirect_url' => post_url(@post, host: 'cddevel.com'), 'app_id' => '1225910234107959' }.to_query, rel: 'noopener', target: '_blank'
+      .row
+        .col-xs-12.text-right
+          %button.btn.btn-primary(type='button' data-dismiss='modal') CLOSE

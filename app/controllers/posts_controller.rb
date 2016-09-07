@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = PostDecorator.new(@post, view_context)
     if request.path != post_path(@post)
       redirect_to post_path(@post), status: :moved_permanently
     end
