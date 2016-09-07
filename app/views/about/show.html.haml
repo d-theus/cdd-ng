@@ -14,195 +14,212 @@
 
 .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
   .well.jumbo-card
-    %section
-      %h2 This website
-      %p
-        is mainly a blog about backend development and administration. It's also my personal sandbox
-        and portfolio. I hope it will be as much useful for the reader as it helps me to become a
-        better developer.
-    %section
-      %h2 Me
-      %p Hello. My name is Andrew. I am web developer/software engineer specializing in Ruby backend development.
-      %p <strong>Current job:</strong> software engineer at JSC &laquo;Vega&raquo;.
-      %p <strong>Current location:</strong> Moscow, Russian Federation.
-      %p <strong>Education:</strong> Moscow Technological Univesity (MIREA), Bachelor's degree, IT.
-      %p <strong>Status:</strong> open for job offers.
-    %section
-      %h2 Contacts
-      %ul.list-unstyled.list-inline
-        %li
-          = link_to 'https://www.linkedin.com/in/andrew-dorofeyev-807586b4', class: 'btn btn-primary btn-fab btn-fab-mini', target: '_blank', rel: 'nofollow noindex noopener' do
-            %i.socicon.socicon-linkedin
-        %li
-          = link_to 'https://github.com/d-theus', class: 'btn btn-primary btn-fab btn-fab-mini', target: '_blank', rel: 'nofollow noindex noopener' do
-            %i.socicon.socicon-github
-        %li
-          = link_to 'https://www.facebook.com/profile.php?id=100009998048390', class: 'btn btn-primary btn-fab btn-fab-mini', target: '_blank', rel: 'nofollow noindex noopener' do
-            %i.socicon.socicon-facebook
-        %li
-          = link_to 'mailto:slma0x02@gmail.com', class: 'btn btn-primary btn-fab', class: 'btn btn-primary btn-fab btn-fab-mini' do
-            %i.material-icons email
+    %ul.nav.nav-tabs
+      %li.active
+        %a(href='#me' data-toggle='tab') Me
+      %li
+        %a(href='#website' data-toggle='tab') Website
+      %li
+        %a(href='#professional' data-toggle='tab') Professional
+      %li
+        %a(href='#skills' data-toggle='tab') Skills
+      %li
+        %a(href='#contacts' data-toggle='tab') Contacts
+      %li
+        %a(href='#experience' data-toggle='tab') Experience
+    .col-xs-10.col-xs-offset-1.tab-content
+      %section.tab-pane.fade.active.in#me
+        %br/
+        %p.lead Hello. My name is Andrew. I am web developer/software engineer specializing in Ruby backend development.
+        %br/
+      %section.tab-pane.fade#website
+        %h2 This website
+        %p
+          is mainly a blog about backend development and administration. It's also my personal sandbox
+          and portfolio. I hope it will be as much useful for the reader as it helps me to become a
+          better developer.
+      %section.tab-pane.fade#professional
+        %h2 Professional
+        %p <strong>Current job:</strong> software engineer at JSC &laquo;Vega&raquo;.
+        %p <strong>Current location:</strong> Moscow, Russian Federation.
+        %p <strong>Education:</strong> Moscow Technological Univesity (MIREA), Bachelor's degree, IT.
+        %p <strong>Status:</strong> open for job offers.
+      %section.tab-pane.fade#contacts
+        %h2 Contacts
+        %ul.list-unstyled.list-inline
+          %li
+            = link_to 'https://www.linkedin.com/in/andrew-dorofeyev-807586b4', class: 'btn btn-primary btn-fab btn-fab-mini', target: '_blank', rel: 'nofollow noindex noopener' do
+              %i.socicon.socicon-linkedin
+          %li
+            = link_to 'https://github.com/d-theus', class: 'btn btn-primary btn-fab btn-fab-mini', target: '_blank', rel: 'nofollow noindex noopener' do
+              %i.socicon.socicon-github
+          %li
+            = link_to 'https://www.facebook.com/profile.php?id=100009998048390', class: 'btn btn-primary btn-fab btn-fab-mini', target: '_blank', rel: 'nofollow noindex noopener' do
+              %i.socicon.socicon-facebook
+          %li
+            = link_to 'mailto:slma0x02@gmail.com', class: 'btn btn-primary btn-fab', class: 'btn btn-primary btn-fab btn-fab-mini' do
+              %i.material-icons email
 
-    %section
-      %h2 Skills
-      %h3 Scales
-      %p.text-muted
-        I define the following scales this way:
+      %section.tab-pane#skills
+        %h2 Skills
+        %h3 Scales
+        %p.text-muted
+          I define the following scales this way:
+          .row
+            .col-xs-8.col-xs-offset-1.col-sm-offset-2.xs-ladder
+              .col-xs-1.col-xs-pull-1 nothing
+              .col-xs-1 concepts
+              .col-xs-1.col-xs-push-1 basic&nbsp;stuff
+              .col-xs-2.col-xs-push-2 experienced
+              .col-xs-2.col-xs-push-3 advanced
+              .col-xs-2.col-xs-push-4 expert
+          .row
+            .col-xs-10.col-xs-offset-1
+              .progress
+                .progress-bar.progress-bar-default(style="width: 20%")
+                .progress-bar.progress-bar-warning(style="width: 20%")
+                .progress-bar.progress-bar-info(style="width: 20%")
+                .progress-bar.progress-bar-success(style="width: 20%")
+                .progress-bar.progress-bar-primary(style="width: 20%")
         .row
-          .col-xs-8.col-xs-offset-1.col-sm-offset-2.xs-ladder
-            .col-xs-1.col-xs-pull-1 nothing
-            .col-xs-1 concepts
-            .col-xs-1.col-xs-push-1 basic&nbsp;stuff
-            .col-xs-2.col-xs-push-2 experienced
-            .col-xs-2.col-xs-push-3 advanced
-            .col-xs-2.col-xs-push-4 expert
+          .col-xs-12
+            %h3 Programming languages
+            %p.row
+              .col-xs-2.text-right
+                Ruby
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                Javascript/Coffeescript
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 50%")
+            %p.row
+              .col-xs-2.text-right
+                C/C++
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 50%")
+            %p.row
+              .col-xs-2.text-right
+                Haskell
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 30%")
         .row
-          .col-xs-10.col-xs-offset-1
-            .progress
-              .progress-bar.progress-bar-default(style="width: 20%")
-              .progress-bar.progress-bar-warning(style="width: 20%")
-              .progress-bar.progress-bar-info(style="width: 20%")
-              .progress-bar.progress-bar-success(style="width: 20%")
-              .progress-bar.progress-bar-primary(style="width: 20%")
-      .row
-        .col-xs-12
-          %h3 Programming languages
-          %p.row
-            .col-xs-2.text-right
-              Ruby
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 70%")
-          %p.row
-            .col-xs-2.text-right
-              Javascript/Coffeescript
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 50%")
-          %p.row
-            .col-xs-2.text-right
-              C/C++
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 50%")
-          %p.row
-            .col-xs-2.text-right
-              Haskell
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 30%")
-      .row
-        .col-xs-12
-          %h3 Frameworks &amp; Libraries
-          %p.row
-            .col-xs-2.text-right
-              Ruby on Rails
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 65%")
-          %p.row
-            .col-xs-2.text-right
-              RSpec
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 70%")
-          %p.row
-            .col-xs-2.text-right
-              YARD
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 70%")
-          %p.row
-            .col-xs-2.text-right
-              AngularJS
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 40%")
+          .col-xs-12
+            %h3 Frameworks &amp; Libraries
+            %p.row
+              .col-xs-2.text-right
+                Ruby on Rails
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 65%")
+            %p.row
+              .col-xs-2.text-right
+                RSpec
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                YARD
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                AngularJS
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 40%")
 
-      .row
-        .col-xs-12
-          %h3 Databases
-          %p.row
-            .col-xs-2.text-right
-              PostgreSQL
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 50%")
-          %p.row
-            .col-xs-2.text-right
-              MySQL
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 30%")
-          %p.row
-            .col-xs-2.text-right
-              Redis
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 30%")
+        .row
+          .col-xs-12
+            %h3 Databases
+            %p.row
+              .col-xs-2.text-right
+                PostgreSQL
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 50%")
+            %p.row
+              .col-xs-2.text-right
+                MySQL
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 30%")
+            %p.row
+              .col-xs-2.text-right
+                Redis
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 30%")
 
-      .row
-        .col-xs-12
-          %h3 Configuration management / Integration / Version Control
-          %p.row
-            .col-xs-2.text-right
-              Chef
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 40%")
-          %p.row
-            .col-xs-2.text-right
-              Capistrano
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 70%")
-          %p.row
-            .col-xs-2.text-right
-              Docker/Compose
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 70%")
-      .row
-        .col-xs-12
-          %h3 Administation (Linux: RHEL, Centos, Arch, Alt, Astra)
-          %p.row
-            .col-xs-2.text-right
-              Initialization configuration (e.g. systemd, initd)
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 80%")
-          %p.row
-            .col-xs-2.text-right
-              Installing, deployment, initial configuration
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 90%")
-          %p.row
-            .col-xs-2.text-right
-              Security
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 70%")
-          %p.row
-            .col-xs-2.text-right
-              Scripting, utilities
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 70%")
-          %p.row
-            .col-xs-2.text-right
-              Nginx
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 60%")
-          %p.row
-            .col-xs-2.text-right
-              Fluentd
-            .col-xs-9.col-md-7
-              .progress
-                .progress-bar.progress-bar-info(style="width: 60%")
+        .row
+          .col-xs-12
+            %h3 Configuration management / Integration / Version Control
+            %p.row
+              .col-xs-2.text-right
+                Chef
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 40%")
+            %p.row
+              .col-xs-2.text-right
+                Capistrano
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                Docker/Compose
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+        .row
+          .col-xs-12
+            %h3 Administation (Linux: RHEL, Centos, Arch, Alt, Astra)
+            %p.row
+              .col-xs-2.text-right
+                Initialization configuration (e.g. systemd, initd)
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 80%")
+            %p.row
+              .col-xs-2.text-right
+                Installing, deployment, initial configuration
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 90%")
+            %p.row
+              .col-xs-2.text-right
+                Security
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                Scripting, utilities
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 70%")
+            %p.row
+              .col-xs-2.text-right
+                Nginx
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 60%")
+            %p.row
+              .col-xs-2.text-right
+                Fluentd
+              .col-xs-9.col-md-7
+                .progress
+                  .progress-bar.progress-bar-info(style="width: 60%")
 
-      %section
+      %section.tab-pane.fade#experience
         %h2 Experience and achievments
 
         %h3= link_to 'magic-ice.org', 'https://magic-ice.org', target: '_blank', rel: 'nofollow noindex noopener'
