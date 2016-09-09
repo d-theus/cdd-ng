@@ -31,6 +31,7 @@ gem 'redcarpet'
 gem 'rouge'
 gem 'redis-rails'
 gem 'sidekiq'
+gem 'rails-observers'
 
 group :development do
   gem 'capistrano'
@@ -39,6 +40,8 @@ group :development do
   gem 'chef'
   gem 'knife-solo'
   gem 'knife-solo_data_bag'
+  gem 'bullet'
+  gem 'rack-mini-profiler'
 end
 
 group :development, :test do

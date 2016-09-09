@@ -27,5 +27,6 @@ module CddNg
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :en
     config.autoload_paths << Rails.root.join('lib', 'cdd-ng')
+    config.active_record.observers = [:tags_observer, :posts_observer]
   end
 end

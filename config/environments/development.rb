@@ -5,6 +5,7 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
+  config.cache_store = :redis_store, 'redis://localhost:6380/0/cache'
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -42,4 +43,17 @@ Rails.application.configure do
 
   config.action_controller.asset_host = 'http://localhost:3000'
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+  config.after_initialize do
+      Bullet.enable = true
+      #Bullet.alert = true
+      Bullet.bullet_logger = true
+      Bullet.console = true
+      #Bullet.growl = true
+      Bullet.rails_logger = true
+      #Bullet.honeybadger = true
+      #Bullet.bugsnag = true
+      #Bullet.airbrake = true
+      #Bullet.rollbar = true
+      #Bullet.add_footer = true
+  end
 end

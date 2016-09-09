@@ -11,6 +11,14 @@ class Post < ActiveRecord::Base
   before_save :update_pictures
   before_destroy :update_pictures
 
+  scope :recent, (lambda do |params|
+    Rails.cache.fetch "posts/recent/#{params[:page]}" do
+      order('created_at DESC')
+        .paginate(per_page: 10, page: params[:page])
+        .includes(:pictures, :tags).to_a
+    end
+  end)
+
   def summary
     text.split('<!--cut-->')[-2] || ''
   end

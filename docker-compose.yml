@@ -66,3 +66,8 @@ services:
     volumes:
       - 'queuedata:/var/redis'
 
+  cache:
+    build:
+      context: 'https://github.com/d-theus/redis-cache-dockerfile.git'
+    env_file: .rbenv-vars
+

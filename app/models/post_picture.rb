@@ -1,7 +1,7 @@
 class PostPicture < ActiveRecord::Base
   validates :image, presence: true
   validates :slug, uniqueness: true
-  has_many  :posts, join_table: :posts_post_pictures
+  has_many  :posts, join_table: :posts_post_pictures, counter_cache: true
   extend FriendlyId
   friendly_id :caption, use: [:slugged]
 
