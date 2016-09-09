@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :build_post, only: [:new, :create]
   before_action :fetch_post, only: [:edit, :update, :show, :destroy]
   before_action :fetch_pictures, only: [:new, :edit, :update]
+  before_action :check_scope, only: [:index]
 
   def new
   end
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = PostListDecorator.new(Post.recent(params), view_context)
+    @posts = PostListDecorator.new(Post.send(params[:scope], params), view_context)
     @tags =
       Rails.cache.fetch('most_used_tags') do
         ActsAsTaggableOn::Tag.most_used(50).pluck(:name).to_a
@@ -79,6 +80,10 @@ class PostsController < ApplicationController
 
   def fetch_pictures
     @pictures = PostPicture.order('created_at DESC')
+  end
+
+  def check_scope
+    Post::SCOPES.include?(params[:scope].to_s) || params[:scope] = Post::SCOPES.first
   end
 end
 

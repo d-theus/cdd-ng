@@ -64,6 +64,43 @@ EOF
     end
   end
 
+  # Scopes
+  describe 'scope' do
+    before { FactoryGirl.create_list(:post, count) }
+    let(:per_page) { 10 }
+    let(:count) { 15 }
+
+    describe '#recent' do
+      it 'has :per_page records' do
+        expect(Post.recent.size).to eq 10
+      end
+
+      it 'has records sorted by :created_at' do
+        times = Post.recent.map(&:created_at)
+        expect(times).to eq times.sort.reverse
+      end
+
+      it 'last page has :count % :per_page records' do
+        page = Post.recent.total_pages
+        expect(Post.recent(page: page).size).to eq (count % per_page)
+      end
+    end
+
+    describe '#tagged' do
+      before { Post.find_each { |p| p.update(tag_list: %w[tag1 tag2 tag3]) } }
+      before { Post.last.update(tag_list: %w[tag1 tag2 tag3 tag4]) }
+      
+      it 'returns empty collection when absent tag given' do
+        expect(Post.tagged(tag: 'tag10')).to be_empty
+      end
+      it 'returns exactly the posts tagged, paginated' do
+        expect(Post.tagged(tag: 'tag1').size).to eq per_page
+        page = Post.tagged(tag: 'tag1').total_pages
+        expect(Post.tagged(tag: 'tag1', page: page).size).to eq (count % per_page)
+      end
+    end
+  end
+
   # Methods
   describe '#summary' do
     context 'when there is no tag' do

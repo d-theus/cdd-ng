@@ -5,17 +5,19 @@ Rails.application.routes.draw do
 
   devise_for :admins
   scope :blog do
-    get '/', to: redirect('/blog/posts/recent')
+    get '', to: redirect('/blog/posts/recent')
     resources :posts do
-      get '', on: :collection, to: redirect('/blog/posts/recent')
-      get :preview, on: :collection
-      get :recent, on: :collection, action: :index
-      get 'tagged/:tag', on: :collection, action: :tagged, as: :tagged
+      collection do
+        get '', to: redirect('/blog/posts/recent')
+        get 'recent', action: :index, as: :recent, defaults: { scope: :recent }
+        get 'tagged/:tag', action: :index, as: :tagged, defaults: { scope: :tagged }
+        get 'preview'
+      end
       resources :comments
     end
     resources :pictures, except: [:show, :new, :edit], controller: :pictures
   end
 
   get '/about', to: 'about#show', as: 'about'
-  root to: redirect('/blog/posts/recent')
+  root to: 'posts#index'
 end

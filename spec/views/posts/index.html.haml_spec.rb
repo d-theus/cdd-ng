@@ -14,19 +14,36 @@ RSpec.describe "posts/index", type: :view do
   let(:per_page) { 10 }
   let(:post_count) { 10 }
   let(:tag_count) { 10 }
+  let(:scope) { 'recent' }
 
   before do
     assign :posts, posts
     assign :tags,  tags
+    params[:scope] = scope
   end
 
   before { allow(view).to receive(:admin?).and_return(false) }
 
-  it 'has content_for :page_heading' do
-    render
-    expect(view.content_for(:page_heading)).to have_selector('h1', text: 'Recent posts')
-  end
+  describe 'scopes:' do
+    context 'when recent' do
+      let(:scope) { 'recent' }
+      it 'has content_for :page_heading' do
+        render
+        expect(view.content_for(:page_heading)).to have_selector('h1', text: 'Recent posts')
+      end
+    end
+    
+    context 'when tagged' do
+      let(:scope) { 'tagged' }
+      let(:tag) { tags.first }
+      before { params[:tag] = tag }
 
+      it 'has content_for :page_heading' do
+        render
+        expect(view.content_for(:page_heading)).to have_selector('h1', text: "Posts tagged \"#{tag}\"")
+      end
+    end
+  end
   describe 'content_for :action' do
     context 'when admin' do
       before { allow(view).to receive(:admin?).and_return(true)}

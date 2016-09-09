@@ -20,4 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  posts:
+    scopes:
+      recent: Recent posts
+      tagged: Posts tagged "%{tag}"

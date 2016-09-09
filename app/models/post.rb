@@ -11,12 +11,20 @@ class Post < ActiveRecord::Base
   before_save :update_pictures
   before_destroy :update_pictures
 
-  scope :recent, (lambda do |params|
+  SCOPES = %w(recent tagged)
+
+  scope :recent, (lambda do |params = {}|
     Rails.cache.fetch "posts/recent/#{params[:page]}" do
       order('created_at DESC')
         .paginate(per_page: 10, page: params[:page])
         .includes(:pictures, :tags).to_a
     end
+  end)
+
+  scope :tagged, (lambda do |params = {}|
+    tagged_with(params[:tag])
+        .paginate(per_page: 10, page: params[:page])
+        .includes(:pictures, :tags).to_a
   end)
 
   def summary

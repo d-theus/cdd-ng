@@ -31,15 +31,15 @@
       %ul.list-unstyled.tags
         - @tags.each do |tg|
           %li
-            %a.label{href: '#'}= tg
+            %a.label{href: tagged_posts_path(tag: tg)}= tg
 
 - content_for :page_heading do
   %hgroup.row
     .col-xs-10.col-xs-offset-1.col-sm-8.col-sm-offset-2
-      %h1 Recent posts
+      %h1= t "posts.scopes.#{params[:scope]}", params.except(:scope)
 
 - content_for :title do
-  = raw "Recent posts | Caffeine Driven Devel"
+  = raw "#{t "posts.scopes.#{params[:scope]}", params.except(:scope)} | Caffeine Driven Devel"
 
 - if admin?
   - content_for :action do
