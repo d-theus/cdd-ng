@@ -99,6 +99,88 @@ EOF
         expect(Post.tagged(tag: 'tag1', page: page).size).to eq (count % per_page)
       end
     end
+
+    describe '#search' do
+      before(:all) { Post.create(title: 'Post1', tag_list: %w[tag1], text: 'lorem') }
+      before(:all) { Post.create(title: 'Post2', tag_list: %w[tag2], text: 'ipsum') }
+      before(:all) { Post.create(title: 'Post3', tag_list: %w[tag3], text: 'dolor') }
+      subject { Post.search query: query }
+
+      context 'when query' do
+        context 'is empty' do
+          let(:query) { '' }
+          it 'returns empty collection' do
+            expect(subject).to be_empty
+          end
+        end
+        context 'mathes title, tags, text [---]' do
+          let(:query) { 'nope, nah, noway' }
+          it 'returns empty collection' do
+            expect(subject).to be_empty
+          end
+        end
+        context 'mathes title, tags, text [--v]' do
+          let(:query) { 'lorem ipsum' }
+          it 'return all matched' do
+            expect(subject.size).to eq 2
+            expect(subject.select {|rec| rec.title == 'Post1' }.size).to eq 1
+            expect(subject.select {|rec| rec.title == 'Post2' }.size).to eq 1
+            expect(subject.select {|rec| rec.title == 'Post3' }.size).to eq 0
+          end
+        end
+        context 'mathes title, tags, text [-v-]' do
+          let(:query) { 'tag1 tag2' }
+          it 'return all matched' do
+            expect(subject.size).to eq 2
+            expect(subject.select {|rec| rec.title == 'Post1' }.size).to eq 1
+            expect(subject.select {|rec| rec.title == 'Post2' }.size).to eq 1
+            expect(subject.select {|rec| rec.title == 'Post3' }.size).to eq 0
+          end
+        end
+        context 'mathes title, tags, text [-vv]' do
+          let(:query) { 'lorem tag2' }
+          it 'return all matched, tags first' do
+            expect(subject.size).to eq 2
+            expect(subject[0].title).to eq 'Post2'
+            expect(subject[1].title).to eq 'Post1'
+            expect(subject.select {|rec| rec.title == 'Post3' }.size).to eq 0
+          end
+        end
+        context 'mathes title, tags, text [v--]' do
+          let(:query) { 'Post1 Post2' }
+          it 'return all matched' do
+            expect(subject.size).to eq 2
+            expect(subject.select {|rec| rec.title == 'Post1' }.size).to eq 1
+            expect(subject.select {|rec| rec.title == 'Post2' }.size).to eq 1
+            expect(subject.select {|rec| rec.title == 'Post3' }.size).to eq 0
+          end
+        end
+        context 'mathes title, tags, text [v-v]' do
+          let(:query) { 'lorem Post2' }
+          it 'return all matched, title first' do
+            expect(subject.size).to eq 2
+            expect(subject[0].title).to eq 'Post2'
+            expect(subject[1].title).to eq 'Post1'
+            expect(subject.select {|rec| rec.title == 'Post3' }.size).to eq 0
+          end
+        end
+        context 'mathes title, tags, text [vv-]' do
+          let(:query) { 'lorem Post2' }
+          it 'return all matched, title first' do
+            
+          end
+        end
+        context 'mathes title, tags, text [vvv]' do
+          let(:query) { 'lorem Post2 tag1' }
+          it 'return all matched, title first, tag second' do
+            expect(subject.size).to eq 2
+            expect(subject[0].title).to eq 'Post2'
+            expect(subject[1].title).to eq 'Post1'
+            expect(subject.select {|rec| rec.title == 'Post3' }.size).to eq 0
+          end
+        end
+      end
+    end
   end
 
   # Methods

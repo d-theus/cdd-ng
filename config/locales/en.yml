@@ -24,3 +24,4 @@ en:
     scopes:
       recent: Recent posts
       tagged: Posts tagged "%{tag}"
+      search: Search results

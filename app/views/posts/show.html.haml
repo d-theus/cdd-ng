@@ -24,6 +24,8 @@
               - unless i == @see_also.size - 1
                 %li.list-group-separator
 
+    = render partial: 'layouts/search'
+
 %section.col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-1.col-lg-7.col-lg-offset-2
   = link_to 'SHOW COMMENTS', post_comments_path(post_id: @post.slug), id: 'show_comments', class: 'btn btn-primary', data: { remote: true, 'disable-with' => 'Loading comments..'  }
 

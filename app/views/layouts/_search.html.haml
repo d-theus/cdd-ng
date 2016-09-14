@@ -1,0 +1,6 @@
+%section.row#search
+  .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2.text-center
+    %h4.text-primary Search
+    = simple_form_for '', url: search_posts_path, html: {  method: :get } do |f|
+      = f.input :query, placeholder: 'query', label: false, input_html: { name: 'query', class: 'input-lg'}
+      = f.submit 'search', class: 'hidden'

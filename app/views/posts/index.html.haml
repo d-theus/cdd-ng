@@ -33,10 +33,17 @@
           %li
             %a.label{href: tagged_posts_path(tag: tg)}= tg
 
+  %br/
+
+  = render partial: 'layouts/search'
+
 - content_for :page_heading do
   %hgroup.row
     .col-xs-10.col-xs-offset-1.col-sm-8.col-sm-offset-2
       %h1= t "posts.scopes.#{params[:scope]}", params.except(:scope)
+      - if params[:scope].to_s == 'search'
+        %h2 Query: "#{params[:query] || '<empty>'}"
+        %br/
 
 - content_for :title do
   = raw "#{t "posts.scopes.#{params[:scope]}", params.except(:scope)} | Caffeine Driven Devel"

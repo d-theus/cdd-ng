@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class Post < ActiveRecord::Base
   acts_as_ordered_taggable
   extend FriendlyId
@@ -11,7 +13,7 @@ class Post < ActiveRecord::Base
   before_save :update_pictures
   before_destroy :update_pictures
 
-  SCOPES = %w(recent tagged)
+  SCOPES = %w(recent tagged search)
 
   scope :recent, (lambda do |params = {}|
     Rails.cache.fetch "posts/recent/#{params[:page]}" do
@@ -25,6 +27,29 @@ class Post < ActiveRecord::Base
     tagged_with(params[:tag])
         .paginate(per_page: 10, page: params[:page])
         .includes(:pictures, :tags).to_a
+  end)
+
+  scope :search, (lambda do |params = {}|
+    query = sanitize(params[:query].to_s.split.grep(/\w+/).join(' | '))
+    return [] if query.blank?
+    sql = <<-EOF
+    SELECT ranked.*, ts_rank(ranked.doc, to_tsquery(#{query})) AS rank
+    FROM (SELECT #{table_name}.*,
+         setweight(to_tsvector(coalesce(string_agg(pts.name, ' '))), 'B') || setweight(to_tsvector(#{table_name}.title), 'A') || setweight(to_tsvector(#{table_name}.text ), 'C') AS doc
+         FROM #{table_name}
+         INNER JOIN (
+           SELECT #{ActsAsTaggableOn::Tag.table_name}.name, #{ActsAsTaggableOn::Tagging.table_name}.taggable_id
+           FROM #{ActsAsTaggableOn::Tag.table_name}
+           INNER JOIN #{ActsAsTaggableOn::Tagging.table_name}
+           ON #{ActsAsTaggableOn::Tag.table_name}.id = #{ActsAsTaggableOn::Tagging.table_name}.tag_id AND #{ActsAsTaggableOn::Tagging.table_name}.taggable_type = '#{self}'
+         ) AS pts
+         ON pts.taggable_id = #{table_name}.id
+         GROUP BY #{table_name}.id) AS ranked
+    WHERE doc @@ to_tsquery(#{query})
+    ORDER BY rank DESC
+    EOF
+    find_by_sql(sql)
+      .paginate(per_page: 10, page: params[:page])
   end)
 
   def summary

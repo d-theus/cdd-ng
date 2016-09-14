@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       collection do
         get '', to: redirect('/blog/posts/recent')
         get 'recent', action: :index, as: :recent, defaults: { scope: :recent }
+        get 'search', action: :index, as: :search, defaults: { scope: :search }
         get 'tagged/:tag', action: :index, as: :tagged, defaults: { scope: :tagged }
         get 'preview'
       end
