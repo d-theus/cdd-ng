@@ -19,6 +19,10 @@
               %small!= post.tags
           %p.list-group-item-text
             %p!= post.summary
+          %p.list-group-item-text
+            %span.comments-count
+              Comments:
+              = post.comments.count
       - unless i == @posts.size - 1
         %li.list-group-separator
   = will_paginate @posts, page_links: false, previous_label: 'Newer', next_label: 'Older', class: 'pager'
