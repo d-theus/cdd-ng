@@ -2,27 +2,26 @@
   %ul.list-group.posts
     - @posts.each_with_index do |post, i|
       %li.list-group-item
-        .row-picture
-          != post.thumb
         .row-content
           .pull-right.btn-group-vertical
-            %a.btn.btn-primary{href: post_path(post)} READ
             - if admin?
               %a.btn.btn-info{href: edit_post_path(post), title: 'edit'}
                 EDIT
-          %h3.list-group-item-heading= post.title
-          .list-group-item-text
-            %span.text-muted
-              %small= post.created_at.strftime('%-d %b, %Y')
-              &nbsp;
-              &nbsp;
-              %small!= post.tags
-          %p.list-group-item-text
-            %p!= post.summary
-          %p.list-group-item-text
-            %span.comments-count
-              Comments:
-              = post.comments.count
+          .col-xs-offset-0.col-sm-offset-1
+            %h3.list-group-item-heading
+              = link_to post.title, post_path(post)
+            .list-group-item-text
+              %span.text-muted
+                %small= post.created_at.strftime('%-d %b, %Y')
+                &nbsp;
+                &nbsp;
+                %small!= post.tags
+            %p.list-group-item-text
+              %p!= post.summary
+            %p.list-group-item-text
+              %span.comments-count
+                Comments:
+                = post.comments.count
       - unless i == @posts.size - 1
         %li.list-group-separator
   = will_paginate @posts, page_links: false, previous_label: 'Newer', next_label: 'Older', class: 'pager'
