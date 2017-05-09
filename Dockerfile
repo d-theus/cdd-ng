@@ -1,4 +1,4 @@
-FROM dtheus/rails
+FROM dtheus/rails:4.2-jessie
 
 ENV RAILS_ENV production
 ENV BUNDLE_WITHOUT test:development
