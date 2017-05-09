@@ -25,39 +25,38 @@ services:
     volumes: 
       - '/etc/opendkim/keys/cddevel.com:/etc/opendkim/keys/cddevel.com'
 
-  app1: &app
+  app: &app
     build: .
     depends_on:
       - db
       - smtp
+      - sidekiq
     env_file: .rbenv-vars
     volumes:
       - '/home/web/app/public'
       - 'uploads:/home/web/app/public/uploads'
+    environment:
+      VIRTUAL_HOST: cddevel.com
 
-  app2:
-    <<: *app
-
-  app3:
+  sidekiq:
     <<: *app
     command: bundle exec sidekiq
     depends_on:
-      - queue
       - db
+      - queue
 
   proxy:
-    image: 'dtheus/nginx'
+    image: jwilder/nginx-proxy
     ports:
       - '80:80'
       - '443:443'
     volumes:
-      - './config/nginx.conf:/etc/nginx/nginx.conf'
+      - /var/run/docker.sock:/tmp/docker.sock
+      - /etc/nginx/vhost.d/default:/etc/nginx/vhost.d/default
     volumes_from:
-      - app1:ro
+      - app:ro
     depends_on:
-      - app1
-      - app2
-      - app3
+      - app
 
   queue:
     build:
