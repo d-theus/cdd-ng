@@ -7,7 +7,7 @@ ENV PATH $RBENV_ROOT/shims/:$PATH
 WORKDIR /tmp
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
-RUN rbenv exec bundle install
+RUN bundle install
 
 ADD . $HOME/app/
 USER root
