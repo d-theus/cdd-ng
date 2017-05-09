@@ -18,7 +18,7 @@ services:
       - 'dbdata:/var/lib/pgsql'
 
   smtp:
-    image: 'dtheus/postfix'
+    image: 'dtheus/postfix:jessie'
     ports:
       - '25:25'
     env_file: .rbenv-vars
