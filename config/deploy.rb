@@ -39,7 +39,6 @@ set :pty, true
 set :keep_releases, 5
 
 set :skip_compose_down, ENV['SKIP_COMPOSE_DOWN']
-set :make_persistence_containers, ENV['MAKE_PERSISTENCE_CONTAINERS']
 
 namespace :docker do
   namespace :compose do
@@ -92,7 +91,7 @@ namespace :docker do
     on roles :app do
       config['volumes'].each do |_, val|
         name = val['external']['name']
-        execute "docker volume ls | grep #{name} &>/dev/null; if [ $? -ne 0 ]; then docker volume create --name #{name}; fi"
+        execute "docker volume ls | if grep -q #{name} &>/dev/null; then docker volume create --name #{name}; fi"
       end
     end
   end
