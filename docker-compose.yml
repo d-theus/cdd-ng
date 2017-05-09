@@ -59,14 +59,13 @@ services:
       - app
 
   queue:
-    build:
-      context: 'https://github.com/d-theus/redis-persistence-dockerfile.git'
+    image: redis:3.0
     env_file: .rbenv-vars
     volumes:
       - 'queuedata:/var/redis'
+    command: redis-server --appendonly yes
 
   cache:
-    build:
-      context: 'https://github.com/d-theus/redis-cache-dockerfile.git'
+    image: redis:3.0
     env_file: .rbenv-vars
 
