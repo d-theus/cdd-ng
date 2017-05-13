@@ -89,7 +89,10 @@ namespace :docker do
   task :persistence do
     config = YAML.load(File.read File.expand_path('docker-compose.yml'))
     on roles :app do
-      config['volumes'].each do |_, val|
+      $stderr.puts config['volumes'].inspect
+      config['volumes']
+      .select { |_, val| val && val.key?('external') }
+      .each do |_, val|
         name = val['external']['name']
         execute "docker volume ls | if grep -q #{name} &>/dev/null; then docker volume create --name #{name}; fi"
       end

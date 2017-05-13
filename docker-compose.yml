@@ -16,7 +16,7 @@ services:
     image: 'postgres:9.5'
     env_file: .rbenv-vars
     volumes:
-      - 'dbdata:/var/lib/pgsql'
+      - 'dbdata:/var/lib/postgresql/data'
 
   smtp:
     image: 'dtheus/postfix:jessie'
