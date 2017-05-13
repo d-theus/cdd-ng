@@ -37,6 +37,7 @@ services:
       - 'uploads:/home/web/app/public/uploads'
     environment:
       VIRTUAL_HOST: cddevel.com
+      VIRTUAL_PORT: 3000
 
   sidekiq:
     <<: *app
