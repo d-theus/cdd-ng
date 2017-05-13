@@ -3,6 +3,7 @@ volumes:
   dbdata:
     external:
       name: 'cddevel-dbdata'
+  public:
   uploads:
     external:
       name: 'cddevel-uploads'
@@ -33,8 +34,8 @@ services:
       - sidekiq
     env_file: .rbenv-vars
     volumes:
-      - '/home/web/app/public'
-      - 'uploads:/home/web/app/public/uploads'
+      - 'public:/var/www/cddevel.com/public'
+      - 'uploads:/var/www/cddevel.com/uploads'
     environment:
       VIRTUAL_HOST: cddevel.com
       VIRTUAL_PORT: 3000
@@ -54,8 +55,8 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
       - /etc/nginx/vhost.d/default:/etc/nginx/vhost.d/default
-    volumes_from:
-      - app:ro
+      - public:/app/public
+      - uploads:/app/public/uploads
     depends_on:
       - app
 
