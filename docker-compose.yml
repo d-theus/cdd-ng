@@ -34,8 +34,8 @@ services:
       - sidekiq
     env_file: .rbenv-vars
     volumes:
-      - 'public:/var/www/cddevel.com/public'
-      - 'uploads:/var/www/cddevel.com/uploads'
+      - 'public:/app/public'
+      - 'uploads:/app/public/uploads'
     environment:
       VIRTUAL_HOST: cddevel.com
       VIRTUAL_PORT: 3000
@@ -55,8 +55,8 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
       - /etc/nginx/vhost.d/default:/etc/nginx/vhost.d/default
-      - public:/app/public
-      - uploads:/app/public/uploads
+      - public:/var/www/cddevel.com/public
+      - uploads:/var/www/cddevel.com/public/uploads
     depends_on:
       - app
 
