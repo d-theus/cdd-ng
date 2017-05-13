@@ -41,7 +41,6 @@ services:
   sidekiq:
     <<: *app
     command: bundle exec sidekiq
-    env_file: .rbenv-vars
     depends_on:
       - db
       - queue
