@@ -11,23 +11,39 @@ volumes:
     external:
       name: 'cddevel-queuedata'
 
+networks:
+  www_default:
+    external:
+      name: www_default
+  cddevel:
+
 services:
   db:
     image: 'postgres:9.5'
     env_file: .rbenv-vars
+    networks:
+     - cddevel
     volumes:
       - 'dbdata:/var/lib/postgresql/data'
 
   smtp:
     image: 'dtheus/postfix:jessie'
+    networks:
+     - cddevel
     ports:
-      - '25:25'
+      - '25'
     env_file: .rbenv-vars
     volumes: 
       - '/etc/opendkim/keys/cddevel.com:/etc/opendkim/keys/cddevel.com'
+    environment:
+      VIRTUAL_HOST: mail.cddevel.com
+      VIRTUAL_PORT: 25
 
   app: &app
     build: .
+    networks:
+      - cddevel
+      - www_default
     depends_on:
       - db
       - smtp
@@ -47,27 +63,32 @@ services:
       - db
       - queue
 
-  proxy:
-    image: jwilder/nginx-proxy
-    ports:
-      - '80:80'
-      - '443:443'
+  static:
+    image: nginx
     volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
-      - /etc/nginx/vhost.d/default:/etc/nginx/vhost.d/default
-      - public:/var/www/cddevel.com/public
-      - uploads:/var/www/cddevel.com/public/uploads
+      -  public:/usr/share/nginx/html
+      -  uploads:/usr/share/nginx/html/uploads
     depends_on:
       - app
+    networks:
+      - cddevel
+      - www_default
+    environment:
+      VIRTUAL_HOST: assets.cddevel.com
+      VIRTUAL_PORT: 80
 
   queue:
     image: redis:3.0
     env_file: .rbenv-vars
+    networks:
+     - cddevel
     volumes:
       - 'queuedata:/var/redis'
     command: redis-server --appendonly yes
 
   cache:
     image: redis:3.0
+    networks:
+      - cddevel
     env_file: .rbenv-vars
 

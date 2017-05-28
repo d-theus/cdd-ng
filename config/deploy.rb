@@ -94,7 +94,7 @@ namespace :docker do
       .select { |_, val| val && val.key?('external') }
       .each do |_, val|
         name = val['external']['name']
-        execute "docker volume ls | if grep -q #{name} &>/dev/null; then docker volume create --name #{name}; fi"
+        execute "docker volume ls | grep -q #{name} &>/dev/null; if [ $? -eq 1 ]; then docker volume create --name #{name}; fi"
       end
     end
   end

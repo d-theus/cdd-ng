@@ -24,3 +24,4 @@ tags
 /config/chef/cookbooks
 /config/chef/nodes/*
 .key
+.ruby-version
