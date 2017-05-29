@@ -35,9 +35,6 @@ services:
     env_file: .rbenv-vars
     volumes: 
       - '/etc/opendkim/keys/cddevel.com:/etc/opendkim/keys/cddevel.com'
-    environment:
-      VIRTUAL_HOST: mail.cddevel.com
-      VIRTUAL_PORT: 25
 
   app: &app
     build: .
