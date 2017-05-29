@@ -41,7 +41,6 @@ services:
 
   app: &app
     build: .
-    network_mode: bridge
     networks:
       - cddevel
       - www_default
