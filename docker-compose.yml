@@ -69,7 +69,6 @@ services:
     depends_on:
       - app
     networks:
-      - cddevel
       - www_default
     environment:
       VIRTUAL_HOST: assets.cddevel.com
