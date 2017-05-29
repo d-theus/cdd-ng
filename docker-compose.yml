@@ -15,7 +15,6 @@ networks:
   www_default:
     external:
       name: www_default
-      driver: bridge
   cddevel:
 
 services:
@@ -42,6 +41,7 @@ services:
 
   app: &app
     build: .
+    network_mode: bridge
     networks:
       - cddevel
       - www_default
