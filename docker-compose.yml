@@ -15,6 +15,7 @@ networks:
   www_default:
     external:
       name: www_default
+      driver: bridge
   cddevel:
 
 services:
