@@ -26,16 +26,6 @@ services:
     volumes:
       - 'dbdata:/var/lib/postgresql/data'
 
-  smtp:
-    image: 'dtheus/postfix:jessie'
-    networks:
-     - cddevel
-    ports:
-      - '25'
-    env_file: .rbenv-vars
-    volumes: 
-      - '/etc/opendkim/keys/cddevel.com:/etc/opendkim/keys/cddevel.com'
-
   app: &app
     build: .
     networks:
@@ -43,8 +33,9 @@ services:
       - www_default
     depends_on:
       - db
-      - smtp
       - sidekiq
+    external_links:
+      - www_smtp_1:smtp
     env_file: .rbenv-vars
     volumes:
       - 'public:/app/public'
