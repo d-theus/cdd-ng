@@ -45,7 +45,7 @@ namespace :docker do
     task :up do
       on roles :app do
         within current_path do
-          execute 'docker-compose', 'up', '-d'
+          execute 'docker-compose', 'up', '-d', '--remove-orphans'
         end
       end
     end
