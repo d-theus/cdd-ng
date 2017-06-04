@@ -42,6 +42,7 @@ group :development do
   gem 'knife-solo_data_bag'
   gem 'bullet'
   gem 'rack-mini-profiler'
+  gem 'letter_opener'
 end
 
 group :development, :test do

@@ -12,6 +12,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     if @contact.save
+      ContactMailer.contact_notification_email(@contact).deliver
       flash[:notice] = 'Created contact. Thank you!'
       redirect_to about_path
     else

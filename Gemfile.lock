@@ -187,6 +187,8 @@ GEM
       erubis (~> 2.7.0)
       net-ssh (>= 2.7, < 4.0)
     knife-solo_data_bag (1.1.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (2.7.1)
@@ -194,6 +196,8 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     libv8 (3.16.14.13)
     libyajl2 (1.2.0)
     mail (2.6.4)
@@ -433,6 +437,7 @@ DEPENDENCIES
   knife-solo
   knife-solo_data_bag
   less-rails
+  letter_opener
   mini_magick
   pg
   pry-rails
@@ -458,4 +463,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.11.2
+   1.15.0
