@@ -66,7 +66,10 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: 'smtp',
     port:    25,
-    domain:  'cddevel.com'
+    domain:  'cddevel.com',
+    user_name:            ENV.fetch("SMTP_USER_NAME", ""),
+    password:             ENV.fetch("SMTP_PASSWORD", ""),
+    enable_starttls_auto: false
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

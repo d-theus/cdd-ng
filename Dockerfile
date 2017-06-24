@@ -17,4 +17,4 @@ ARG SECRET_KEY_BASE=216024ccd1e7416560f26edf4888b921605813ce94bba515a6a0401a46de
 WORKDIR /app/
 RUN bundle exec rake assets:clobber; bundle exec rake tmp:clear; bundle exec rake assets:precompile
 
-CMD bundle exec rails server
+CMD rm -rf /tmp/rails.pid; bundle exec rails server -P /tmp/rails.pid
