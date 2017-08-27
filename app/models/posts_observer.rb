@@ -9,6 +9,10 @@ class PostsObserver < ActiveRecord::Observer
     flush_recent
   end
 
+  def after_update(_)
+    flush_recent
+  end
+
   private
 
   def flush_recent
